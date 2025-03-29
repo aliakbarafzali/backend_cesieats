@@ -4,6 +4,9 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import {dirname, join} from 'path';
 import { fileURLToPath } from 'url';
+import usersRouter from './routes/user-routes.js'
+import authRouter from './routes/auth-routes.js'
+
 
 dotenv.config()
 
@@ -18,7 +21,8 @@ app.use(json());
 app.use(cookieParser());
 
 app.use('/',express.static(join(__dirname, 'public')));
-
-app.listen(PORT, ()=>console.log('Serer is listening on ${PORT}'));
+app.use('/api/users', usersRouter);
+app.use('/api/auth', authRouter);
+app.listen(PORT, ()=>console.log('Server is listening on ${PORT}'));
 
 
