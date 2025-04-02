@@ -40,7 +40,7 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, rememberMe } = req.body;
 
     const user = await prisma.users.findUnique({ where: { user_email: email } });
     if (!user) return res.status(401).json({ error: "Email incorrect", code: INCORRECT_EMAIL_CODE });
@@ -49,12 +49,19 @@ router.post('/login', async (req, res) => {
     if (!validPassword) return res.status(401).json({ error: "Mot de passe incorrect", code: INCORRECT_PASSWORD_CODE });
 
     const tokens = jwtTokens(user);
-    res.cookie('refresh_token', tokens.refreshToken, {
+    const cookieOptions = {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-      maxAge: 1000 * 60 * 60 * 24 * 7 // 7 jours
-    });
+      sameSite: 'strict'
+    };
+
+    if (rememberMe) {
+      cookieOptions.maxAge = 7 * 24 * 60 * 60 * 1000; // 7 jours
+    } else {
+      cookieOptions.maxAge = 60 * 60 * 1000; // 15 minutes
+    }
+
+    res.cookie('refresh_token', tokens.refreshToken, cookieOptions);
 
     // On renvoie l'access token dans le body pour l'utiliser côté client (par exemple dans le header Authorization)
     return res.status(200).json({ accessToken: tokens.accessToken, user: user });
