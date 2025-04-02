@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  postgres_auth:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: auth_service
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5434:5432"
+    volumes:
+      - auth_data:/var/lib/postgresql/data
+
+  postgres_restaurant:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: restaurant_service
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - restaurant_data:/var/lib/postgresql/data
+
+  auth-service:
+    build:
+      context: ./auth-service
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./auth-service/.env
+    depends_on:
+      - postgres_auth
+
+  restaurant-service:
+    build:
+      context: ./restaurant-service
+    ports:
+      - "5001:5001"
+    env_file:
+      - ./restaurant-service/.env
+    depends_on:
+      - postgres_restaurant
+
+volumes:
+  auth_data:
+  restaurant_data:

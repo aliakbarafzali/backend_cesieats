@@ -1,0 +1,65 @@
+
+// Créer un restaurant
+POST http://localhost:5001/api/restaurants
+Content-Type: application/json
+
+{
+  "restaurant_name": "Chez Mario",
+  "restaurant_address": "6 avenue général Leclerc, 69140 Rillieux-la-pape, France",
+  "restaurant_phone": "0781655198",
+  "restaurant_email": "maric@dksqdsq.fr",
+  "opening_hours": "Lundi - Samedi : 12h - 14h, 19h - 23h",
+  "restaurant_type": "Italien, Kebab",
+  "average_rating": 4.7,
+  "owner_id": "9d3d1840-55d2-4476-863a-c9fd06eeba53"
+}
+
+
+###
+
+// Get All Restaurants
+GET http://localhost:5001/api/restaurants
+
+### 
+// Get Restaurant By Id
+GET http://localhost:5001/api/restaurants/542900b8-0f49-4a5a-bcc8-361844fb2298
+
+### 
+
+// By owner ID
+GET http://localhost:5001/api/restaurants?owner=64cba162-7963-4f0b-87d4-134f0e5a161e
+
+###
+
+GET http://localhost:5001/api/restaurants?type=italien
+
+###
+// Update Restaurant
+PUT http://localhost:5001/api/restaurants/542900b8-0f49-4a5a-bcc8-361844fb2298
+Content-Type: application/json
+
+{
+  "restaurant_name": "Luigi Pizza Updated",
+  "opening_hours": "Tous les jours : 11h - 23h"
+}
+
+### 
+
+
+// Delete Restaurant
+DELETE http://localhost:5001/api/restaurants/542900b8-0f49-4a5a-bcc8-361844fb2298
+
+###
+// Get All Categories
+GET http://localhost:5001/api/categories
+
+###
+
+// Create a category
+POST http://localhost:5001/api/categories
+Content-Type: application/json
+
+{
+  "name": "Dessert",
+  "restaurant_id": "ccb77027-5578-4d4e-a0e5-9517ca7f8bb6"
+}

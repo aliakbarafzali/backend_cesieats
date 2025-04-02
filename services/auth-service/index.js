@@ -6,6 +6,8 @@ import {dirname, join} from 'path';
 import { fileURLToPath } from 'url';
 import usersRouter from './routes/user-routes.js'
 import authRouter from './routes/auth-routes.js'
+import userRoutes from './routes/user-routes.js';
+
 
 
 dotenv.config()
@@ -23,6 +25,7 @@ app.use(cookieParser());
 app.use('/',express.static(join(__dirname, 'public')));
 app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
-app.listen(PORT, ()=>console.log('Server is listening on ${PORT}'));
+
+app.listen(PORT, ()=>console.log(`✅ Auth is listening on ${PORT}`));
 
 

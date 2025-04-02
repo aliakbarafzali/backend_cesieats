@@ -4,10 +4,10 @@ POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
 {
-  "name": "zecxwcxwb",
-  "email": "bob@email.com",
-  "phone": "0781548795",
-  "type": 1,
+  "name": "anas",
+  "email": "anasfood@email.com",
+  "phone": "07814448795",
+  "type": 3,
   "password": "bob"
 }
 
@@ -18,7 +18,7 @@ POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
 {
-    "email":"bob@email.com",
+    "email":"anasfood@email.com",
     "password":"bob"
 }
 
@@ -27,7 +27,7 @@ Content-Type: application/json
 
 POST http://localhost:5000/api/auth/change-password
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTkyZTUzMWUtNmZkZS00MDdmLWI0OWEtZjAwYTMyMWJiNjZiIiwidXNlcl9uYW1lIjoiemVjeHdjeHdiIiwidXNlcl9lbWFpbCI6ImJvYkBlbWFpbC5jb20iLCJpYXQiOjE3NDMyNjAxNDEsImV4cCI6MTc0MzI2MDE2MX0.8U-5wf-GClg89Sq88BOxIBUBq7U7J5--NMIQgL3Lk5Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiOWQzZDE4NDAtNTVkMi00NDc2LTg2M2EtYzlmZDA2ZWViYTUzIiwidXNlcl9uYW1lIjoiYW5hcyIsInVzZXJfZW1haWwiOiJhbmFzZm9vZEBlbWFpbC5jb20iLCJpYXQiOjE3NDM1OTYwMjgsImV4cCI6MTc0MzU5NjA0OH0.TX2PYJU0pSl0z4Vt_RBitAd2UX-IIUiw1T241TjZA3I
 
 {
   "oldPassword": "bob",
@@ -36,3 +36,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTkyZ
 ###
 
 GET http://localhost:5000/api/users/user-types
+
+###
+
+// get specific user 
+GET http://localhost:5000/api/users/9d3d1840-55d2-4476-863a-c9fd06eeba53
+
+###
+
+GET http://localhost:5000/api/users
