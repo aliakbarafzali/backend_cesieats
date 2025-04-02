@@ -8,7 +8,7 @@ RUN npm install
 COPY . .
 
 # Rendre le script exécutable
-COPY entrypoint.sh .
+COPY entrypoint.sh ./
 RUN chmod +x entrypoint.sh
 
 # Exposer le port
