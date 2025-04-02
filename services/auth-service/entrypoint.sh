@@ -4,6 +4,12 @@ set -e
 echo "🔄 Génération du client Prisma..."
 npx prisma generate
 
+# Si la variable RESET_DB est définie à "true", on réinitialise la base de données
+if [ "$RESET_DB" = "true" ]; then
+  echo "⚠️ Réinitialisation de la base de données..."
+  npx prisma migrate reset --force
+fi
+
 # Vérifie si le dossier des migrations existe et n'est pas vide
 if [ -d "prisma/migrations" ] && [ "$(ls -A prisma/migrations)" ]; then
   echo "🗃️ Application des migrations..."

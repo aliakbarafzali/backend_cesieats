@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import { jwtTokens } from '../utils/jwt-helpers.js';
 import { authentificateToken } from '../middleware/authorization.js';
 import { PrismaClient } from '@prisma/client';
+import { INCORRECT_EMAIL_CODE, INCORRECT_PASSWORD_CODE } from '../utils/globals.js';
 
 const prisma = new PrismaClient();
 const router = express.Router();
@@ -42,10 +43,10 @@ router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
     const user = await prisma.users.findUnique({ where: { user_email: email } });
-    if (!user) return res.status(401).json({ error: "Email incorrect" });
+    if (!user) return res.status(401).json({ error: "Email incorrect", code: INCORRECT_EMAIL_CODE });
 
     const validPassword = await bcrypt.compare(password, user.user_password);
-    if (!validPassword) return res.status(401).json({ error: "Mot de passe incorrect" });
+    if (!validPassword) return res.status(401).json({ error: "Mot de passe incorrect", code: INCORRECT_PASSWORD_CODE });
 
     const tokens = jwtTokens(user);
     res.cookie('refresh_token', tokens.refreshToken, { httpOnly: true });
