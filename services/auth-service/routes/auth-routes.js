@@ -117,7 +117,7 @@ router.get('/refresh_token', (req, res) => {
         secure: true,
         ...(process.env.COOKIE_DOMAIN && { domain: process.env.COOKIE_DOMAIN })
       });
-      return res.json(tokens);
+      return res.json({ accessToken: tokens.accessToken, refreshToken: tokens.refreshToken, userId: user.user_id });
     });
   } catch (error) {
     return res.status(401).json({ error: error.message, code: TECHNICAL_ERROR_CODE });
