@@ -13,6 +13,18 @@ model user_types {
   users      users[]
 }
 
+model Address {
+  id       Int      @id @default(autoincrement())
+  place_id Int      @unique
+  road     String   @db.VarChar(100)
+  city     String   @db.VarChar(100)
+  postcode String   @db.VarChar(20)
+  country  String   @db.VarChar(100)
+  lat      String   @db.VarChar(100)
+  lon      String   @db.VarChar(100)
+  users    users[]
+}
+
 model users {
   user_id       String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   user_name     String      @db.VarChar(100)
@@ -20,5 +32,8 @@ model users {
   user_phone    String?     @db.VarChar(20)
   user_type     Int?
   user_password String      @default("changeme")
+  user_address  Int?
+
+  address       Address?   @relation(fields: [user_address], references: [id], onDelete: NoAction, onUpdate: NoAction)
   user_types    user_types? @relation(fields: [user_type], references: [type_id], onDelete: NoAction, onUpdate: NoAction)
 }

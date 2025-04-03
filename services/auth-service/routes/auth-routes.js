@@ -4,37 +4,70 @@ import jwt from 'jsonwebtoken';
 import { jwtTokens } from '../utils/jwt-helpers.js';
 import { authentificateToken } from '../middleware/authorization.js';
 import { PrismaClient } from '@prisma/client';
-import { INCORRECT_EMAIL_CODE, INCORRECT_PASSWORD_CODE } from '../utils/globals.js';
+import { EMAIL_ALREADY_EXISTS_CODE, INCORRECT_EMAIL_CODE, INCORRECT_PASSWORD_CODE, TECHNICAL_ERROR_CODE } from '../utils/globals.js';
 
 const prisma = new PrismaClient();
 const router = express.Router();
 
 router.post('/register', async (req, res) => {
   try {
-    const { name, email, phone, password, type } = req.body;
+    const { name, email, phone, password, type, address } = req.body;
 
     const existingUser = await prisma.users.findUnique({ where: { user_email: email } });
-    if (existingUser) return res.status(400).json({ error: 'Cet email est déjà utilisé.' });
+    if (existingUser) return res.status(400).json({ error: 'Cet email est déjà utilisé.', code: EMAIL_ALREADY_EXISTS_CODE });
+
+    let newAddress = null;
+    if (address) {
+      // Vérifie si le place_id est présent et cherche une adresse existante
+      let existingAddress = null;
+      if (address.place_id) {
+        existingAddress = await prisma.address.findUnique({
+          where: { place_id: address.place_id }
+        });
+      }
+      if (existingAddress) {
+        newAddress = existingAddress;
+      } else {
+        newAddress = await prisma.address.create({
+          data: {
+            place_id: address.place_id,
+            road: address.address?.road || "",
+            city: address.address?.city || "",
+            postcode: address.address?.postcode || "",
+            country: address.address?.country || "",
+            lat: address.lat || "",
+            lon: address.lon || ""
+          }
+        });
+      }
+    }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-
     const newUser = await prisma.users.create({
       data: {
         user_name: name,
         user_email: email,
         user_phone: phone,
         user_password: hashedPassword,
-        user_type: type
+        user_types: type ? { connect: { type_id: type } } : undefined,
+        address: newAddress ? { connect: { id: newAddress.id } } : undefined,
       }
     });
 
     const tokens = jwtTokens(newUser);
-    res.cookie('refresh_token', tokens.refreshToken, { httpOnly: true });
+    const cookieOptions = {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: 2 * 24 * 60 * 60 * 1000 // 2 jours
+    };
 
-    return res.status(201).json({ message: "Utilisateur enregistré avec succès", tokens });
+    res.cookie('refresh_token', tokens.refreshToken, cookieOptions);
+
+    return res.status(200).json({ message: "Utilisateur enregistré avec succès", tokens, user: newUser });
   } catch (error) {
     console.error(error.message);
-    return res.status(500).json({ error: 'Erreur serveur' });
+    return res.status(500).json({ error: error.message, code: TECHNICAL_ERROR_CODE });
   }
 });
 
@@ -66,7 +99,7 @@ router.post('/login', async (req, res) => {
     // On renvoie l'access token dans le body pour l'utiliser côté client (par exemple dans le header Authorization)
     return res.status(200).json({ accessToken: tokens.accessToken, user: user });
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message, code: TECHNICAL_ERROR_CODE });
   }
 });
 
@@ -87,7 +120,7 @@ router.get('/refresh_token', (req, res) => {
       return res.json(tokens);
     });
   } catch (error) {
-    return res.status(401).json({ error: error.message });
+    return res.status(401).json({ error: error.message, code: TECHNICAL_ERROR_CODE });
   }
 });
 
@@ -114,7 +147,7 @@ router.post('/change-password', authentificateToken, async (req, res) => {
 
     return res.status(200).json({ message: 'Mot de passe mis à jour' });
   } catch (error) {
-    return res.status(500).json({ error: 'Erreur serveur' });
+    return res.status(500).json({ error: error.message, code: TECHNICAL_ERROR_CODE });
   }
 });
 
@@ -123,7 +156,7 @@ router.delete('/refresh_token', (req, res) => {
     res.clearCookie('refresh_token');
     return res.status(200).json({ message: 'Refresh token deleted.' });
   } catch (error) {
-    return res.status(401).json({ error: error.message });
+    return res.status(401).json({ error: error.message, code: TECHNICAL_ERROR_CODE });
   }
 });
 

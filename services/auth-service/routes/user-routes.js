@@ -34,7 +34,8 @@ router.get('/', async (req, res) => {
   try {
     const users = await prisma.users.findMany({
       include: {
-        user_types: true // Affiche aussi le label du type si dispo
+        user_types: true, // Affiche aussi le label du type si dispo
+        address: true, // Affiche aussi l'adresse si dispo
       }
     });
     res.status(200).json({ users });
