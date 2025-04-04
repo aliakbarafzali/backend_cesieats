@@ -75,7 +75,7 @@ router.post('/login', async (req, res) => {
   try {
     const { email, password, rememberMe } = req.body;
 
-    const user = await prisma.users.findUnique({ where: { user_email: email } });
+    const user = await prisma.users.findUnique({ where: { user_email: email }, include: { address: true } });
     if (!user) return res.status(401).json({ error: "Email incorrect", code: INCORRECT_EMAIL_CODE });
 
     const validPassword = await bcrypt.compare(password, user.user_password);
