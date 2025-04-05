@@ -34,10 +34,22 @@ const getCategoryById = async (req, res) => {
 const createCategory = async (req, res) => {
   try {
     const { name, restaurant_id } = req.body;
+
+    // Validation simple
     if (!name || !restaurant_id) {
-      return res.status(400).json({ error: 'Nom et restaurant_id sont requis' });
+      return res.status(400).json({ error: 'Nom et restaurant_id sont requis.' });
     }
 
+    // Vérifie si le restaurant existe
+    const restaurant = await prisma.restaurant.findUnique({
+      where: { restaurant_id },
+    });
+
+    if (!restaurant) {
+      return res.status(404).json({ error: "Le restaurant n'existe pas." });
+    }
+
+    // Création de la catégorie
     const newCategory = await prisma.category.create({
       data: {
         name,
@@ -46,9 +58,16 @@ const createCategory = async (req, res) => {
     });
 
     res.status(201).json(newCategory);
+
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Erreur lors de la création de la catégorie' });
+    console.error('Erreur dans createCategory:', error);
+    
+    // Gestion spécifique des erreurs Prisma
+    if (error.code === 'P2003') {
+      return res.status(400).json({ error: "La clé étrangère 'restaurant_id' n'est pas valide." });
+    }
+
+    res.status(500).json({ error: 'Erreur serveur lors de la création de la catégorie.' });
   }
 };
 

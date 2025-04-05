@@ -11,7 +11,7 @@ Content-Type: application/json
   "opening_hours": "Lundi - Samedi : 12h - 14h, 19h - 23h",
   "restaurant_type": "Italien, Kebab",
   "average_rating": 4.7,
-  "owner_id": "9d3d1840-55d2-4476-863a-c9fd06eeba53"
+  "owner_id": "4d42a145-3804-4a04-a73a-5996517f68a0"
 }
 
 
@@ -22,12 +22,12 @@ GET http://localhost:5001/api/restaurants
 
 ### 
 // Get Restaurant By Id
-GET http://localhost:5001/api/restaurants/542900b8-0f49-4a5a-bcc8-361844fb2298
+GET http://localhost:5001/api/restaurants/3bd46bae-92ef-4e3a-af1c-7a2e28e47a07
 
 ### 
 
 // By owner ID
-GET http://localhost:5001/api/restaurants?owner=64cba162-7963-4f0b-87d4-134f0e5a161e
+GET http://localhost:5001/api/restaurants?owner=4d42a145-3804-4a04-a73a-5996517f68a0
 
 ###
 
@@ -35,7 +35,7 @@ GET http://localhost:5001/api/restaurants?type=italien
 
 ###
 // Update Restaurant
-PUT http://localhost:5001/api/restaurants/542900b8-0f49-4a5a-bcc8-361844fb2298
+PUT http://localhost:5001/api/restaurants/3bd46bae-92ef-4e3a-af1c-7a2e28e47a07
 Content-Type: application/json
 
 {
@@ -47,7 +47,7 @@ Content-Type: application/json
 
 
 // Delete Restaurant
-DELETE http://localhost:5001/api/restaurants/542900b8-0f49-4a5a-bcc8-361844fb2298
+DELETE http://localhost:5001/api/restaurants/3bd46bae-92ef-4e3a-af1c-7a2e28e47a07
 
 ###
 // Get All Categories
@@ -61,5 +61,17 @@ Content-Type: application/json
 
 {
   "name": "Dessert",
-  "restaurant_id": "ccb77027-5578-4d4e-a0e5-9517ca7f8bb6"
+  "restaurant_id": "9f8a92cd-da79-4c78-b06b-3e5f6efb9777"
+}
+
+
+### 
+
+// Create an ingredient
+
+POST http://localhost:5001/api/ingredients
+Content-Type: application/json
+
+{
+  "name": "Fromage"
 }

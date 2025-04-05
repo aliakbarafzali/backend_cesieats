@@ -8,7 +8,6 @@ datasource db {
 }
 
 model Restaurant {
-  @@map("restaurant")
   restaurant_id     String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   restaurant_name   String           @db.VarChar(100)
   restaurant_address String
@@ -21,54 +20,53 @@ model Restaurant {
   owner_id          String           @db.Uuid
   rating            Decimal?         @default(0.0) @db.Decimal(2, 1)
 
-  categories         Category[]
-  dishes             Dish[]
-  restaurant_type    RestaurantType[] @relation("RestaurantTypes")
+  categories        Category[]
+  restaurant_type   RestaurantType[] @relation("RestaurantTypes")
+  ingredients       Ingredient[]     // ✅ Champ inverse ici
 }
 
 model RestaurantType {
-  id          String       @id @default(uuid())
+  id          String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name        String       @unique
   restaurants Restaurant[] @relation("RestaurantTypes")
 }
 
 model Category {
-  category_id   Int       @id @default(autoincrement())
-  restaurant_id String?   @db.Uuid
-  name          String    @db.VarChar(100)
+  category_id   String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  restaurant_id String     @db.Uuid
+  name          String     @db.VarChar(100)
 
-  restaurant    Restaurant? @relation(fields: [restaurant_id], references: [restaurant_id], onDelete: Cascade, onUpdate: NoAction)
-  dishes        Dish[]
+  restaurant    Restaurant @relation(fields: [restaurant_id], references: [restaurant_id], onDelete: Cascade)
+  articles      Article[]  @relation("ArticleCategories")
 }
 
-model Dish {
-  dish_id          String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  restaurant_id    String?         @db.Uuid
-  name             String          @db.VarChar(100)
-  description      String?
-  price            Decimal         @db.Decimal(5, 2)
-  category_id      Int?
+model Article {
+  article_id     String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name           String              @db.VarChar(100)
+  desc           String?
+  price          Decimal             @db.Decimal(5, 2)
 
-  category         Category?       @relation(fields: [category_id], references: [category_id], onUpdate: NoAction)
-  restaurant       Restaurant?     @relation(fields: [restaurant_id], references: [restaurant_id], onDelete: Cascade, onUpdate: NoAction)
-  ingredients      DishIngredient[]
+  categories     Category[]          @relation("ArticleCategories")
+  ingredients    ArticleIngredient[]
 }
 
 model Ingredient {
-  ingredient_id    String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name             String          @db.VarChar(100)
+  ingredient_id  String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name           String      @db.VarChar(100)
+  restaurant_id  String      @db.Uuid
 
-  dishes           DishIngredient[]
+  restaurant     Restaurant  @relation(fields: [restaurant_id], references: [restaurant_id], onDelete: Cascade)
+  articles       ArticleIngredient[]
 }
 
-model DishIngredient {
-  dish_id       String      @db.Uuid
-  ingredient_id String      @db.Uuid
-  is_optional   Boolean?    @default(false)
-  extra_price   Decimal?    @default(0.00) @db.Decimal(5, 2)
+model ArticleIngredient {
+  article_id     String
+  ingredient_id  String
+  is_optional    Boolean?    @default(false)
+  extra_price    Decimal?    @default(0.00) @db.Decimal(5, 2)
 
-  dish          Dish        @relation(fields: [dish_id], references: [dish_id], onDelete: Cascade, onUpdate: NoAction)
-  ingredient    Ingredient  @relation(fields: [ingredient_id], references: [ingredient_id], onDelete: Cascade, onUpdate: NoAction)
+  article        Article     @relation(fields: [article_id], references: [article_id], onDelete: Cascade)
+  ingredient     Ingredient  @relation(fields: [ingredient_id], references: [ingredient_id], onDelete: Cascade)
 
-  @@id([dish_id, ingredient_id])
+  @@id([article_id, ingredient_id])
 }
