@@ -14,15 +14,16 @@ router.post('/register', async (req, res) => {
     const { name, email, phone, password, type, address } = req.body;
 
     const existingUser = await prisma.users.findUnique({ where: { user_email: email } });
-    if (existingUser) return res.status(400).json({ error: 'Cet email est déjà utilisé.', code: EMAIL_ALREADY_EXISTS_CODE });
+    if (existingUser)
+      return res.status(400).json({ error: 'Cet email est déjà utilisé.', code: EMAIL_ALREADY_EXISTS_CODE });
 
     let newAddress = null;
     if (address) {
-      // Vérifie si le place_id est présent et cherche une adresse existante
+      // Utilise l'identifiant Mapbox (mapbox_id) pour vérifier l'existence de l'adresse.
       let existingAddress = null;
-      if (address.place_id) {
+      if (address.mapbox_id) {
         existingAddress = await prisma.address.findUnique({
-          where: { place_id: address.place_id }
+          where: { place_id: address.mapbox_id }
         });
       }
       if (existingAddress) {
@@ -30,13 +31,19 @@ router.post('/register', async (req, res) => {
       } else {
         newAddress = await prisma.address.create({
           data: {
-            place_id: address.place_id,
-            road: address.address?.road || "",
-            city: address.address?.city || "",
-            postcode: address.address?.postcode || "",
-            country: address.address?.country || "",
-            lat: address.lat || "",
-            lon: address.lon || ""
+            // On suppose que le champ place_id dans le modèle est désormais de type String
+            place_id: address.mapbox_id,
+            // On extrait le nom de la rue depuis context.address.street_name
+            street: address.name_preferred || "",
+            // La ville est récupérée depuis context.place.name
+            city: address.context?.place?.name || "",
+            // Le code postal depuis context.postcode.name
+            postcode: address.context?.postcode?.name || "",
+            // Le pays depuis context.country.name
+            country: address.context?.country?.name || "",
+            // Les coordonnées sont extraites depuis l'objet coordinates
+            lat: address.coordinates?.latitude?.toString() || "",
+            lon: address.coordinates?.longitude?.toString() || ""
           }
         });
       }
@@ -51,7 +58,8 @@ router.post('/register', async (req, res) => {
         user_password: hashedPassword,
         user_types: type ? { connect: { type_id: type } } : undefined,
         address: newAddress ? { connect: { id: newAddress.id } } : undefined,
-      }
+      },
+      include: { address: true }
     });
 
     const tokens = jwtTokens(newUser);
@@ -64,12 +72,13 @@ router.post('/register', async (req, res) => {
 
     res.cookie('refresh_token', tokens.refreshToken, cookieOptions);
 
-    return res.status(200).json({ message: "Utilisateur enregistré avec succès", tokens, user: newUser });
+    return res.status(200).json({ accessToken: tokens.accessToken, user: newUser });
   } catch (error) {
     console.error(error.message);
     return res.status(500).json({ error: error.message, code: TECHNICAL_ERROR_CODE });
   }
 });
+
 
 router.post('/login', async (req, res) => {
   try {

@@ -14,15 +14,15 @@ model user_types {
 }
 
 model Address {
-  id       Int      @id @default(autoincrement())
-  place_id Int      @unique
-  road     String   @db.VarChar(100)
-  city     String   @db.VarChar(100)
-  postcode String   @db.VarChar(20)
-  country  String   @db.VarChar(100)
-  lat      String   @db.VarChar(100)
-  lon      String   @db.VarChar(100)
-  users    users[]
+  id        Int       @id @default(autoincrement())
+  place_id  String    @unique
+  street    String    @db.VarChar(100)
+  city      String    @db.VarChar(100)
+  postcode  String    @db.VarChar(20)
+  country   String    @db.VarChar(100)
+  lat       String    @db.VarChar(100)
+  lon       String    @db.VarChar(100)
+  users     users[]
 }
 
 model users {

@@ -18,11 +18,11 @@ async function main() {
 
   // Création de 2 adresses via upsert pour éviter les duplications
   const address1 = await prisma.address.upsert({
-    where: { place_id: 1001 }, // Utilisez un identifiant fictif pour le seeding
+    where: { place_id: "1001" }, // Utilisez un identifiant fictif pour le seeding
     update: {},
     create: {
-      place_id: 1001,
-      road: 'Rue de Paris',
+      place_id: "1001",
+      street: 'Rue de Paris',
       city: 'Paris',
       postcode: '75000',
       country: 'France',
@@ -32,11 +32,11 @@ async function main() {
   });
 
   const address2 = await prisma.address.upsert({
-    where: { place_id: 1002 },
+    where: { place_id: "1002" },
     update: {},
     create: {
-      place_id: 1002,
-      road: 'Avenue de Lyon',
+      place_id: "1002",
+      street: 'Avenue de Lyon',
       city: 'Lyon',
       postcode: '69000',
       country: 'France',
