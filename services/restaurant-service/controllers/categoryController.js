@@ -101,10 +101,27 @@ const deleteCategory = async (req, res) => {
   }
 };
 
+const deleteAllCategories = async (req, res) => {
+  try {
+    console.log('DELETE /categories hit');
+    const result = await prisma.category.deleteMany();
+    res.status(200).json({
+      message: 'Toutes les catégories ont été supprimées.',
+      deletedCount: result.count,
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: 'Erreur lors de la suppression des catégories.',
+      details: error.message,
+    });
+  }
+};
+
 export {
   getAllCategories,
   getCategoryById,
   createCategory,
   updateCategory,
-  deleteCategory
+  deleteCategory,
+  deleteAllCategories
 };
