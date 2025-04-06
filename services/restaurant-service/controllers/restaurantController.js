@@ -113,18 +113,23 @@ const getAllRestaurants = async (req, res, next) => {
     }
 
     const restaurants = await prisma.restaurant.findMany({
-      where: filters,
-      include: {
-        restaurant_type: type
+      where: {
+        ...filters,
+        ...(type
           ? {
-              where: {
+            restaurant_type: {
+              some: {
                 name: {
                   contains: type,
                   mode: 'insensitive'
                 }
               }
             }
-          : true,
+          }
+          : {})
+      },
+      include: {
+        restaurant_type: true,
         address: true
       }
     });
@@ -140,11 +145,12 @@ const getRestaurantById = async (req, res, next) => {
     const { id } = req.params;
     const restaurant = await prisma.restaurant.findUnique({
       where: { restaurant_id: id },
-      include: { 
+      include: {
         restaurant_type: true,
         address: true,
-        articles: true,
         categories: true,
+        openingHours: true,
+        reviews: true,
       },
     });
     if (!restaurant) return res.status(404).json({
@@ -182,7 +188,7 @@ const updateRestaurant = async (req, res, next) => {
     // Si une nouvelle adresse est fournie
     if (address) {
       let updatedAddress = null;
-      
+
       // Vérifie si l'adresse existe déjà
       if (address.mapbox_id) {
         const existingAddress = await prisma.address.findUnique({
@@ -228,7 +234,7 @@ const updateRestaurant = async (req, res, next) => {
 const deleteRestaurant = async (req, res, next) => {
   try {
     const { id } = req.params;
-    
+
     // Récupérer le restaurant avec ses images
     const restaurant = await prisma.restaurant.findUnique({
       where: { restaurant_id: id },

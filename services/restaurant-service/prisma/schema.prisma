@@ -14,10 +14,10 @@ model Restaurant {
   restaurant_email  String?          @db.VarChar(100)
   image_url         String?          @db.VarChar(255)
   banner_image_url  String?          @db.VarChar(255)
-  opening_hours     String?
+  openingHours      OpeningHours?
   created_at        DateTime         @default(now())
   owner_id          String           @db.Uuid
-  rating            Decimal?         @default(0.0) @db.Decimal(3, 1)
+  rating            Float?           @default(0.0)
   offers_available  Boolean          @default(false)
   address_id        Int
   updated_at        DateTime         @updatedAt
@@ -32,6 +32,20 @@ model Restaurant {
   @@index([restaurant_name])
   @@index([owner_id])
   @@index([address_id])
+}
+
+model OpeningHours {
+  id        Int      @id @default(autoincrement())
+  monday    String   @db.VarChar(20)
+  tuesday   String   @db.VarChar(20)
+  wednesday String   @db.VarChar(20)
+  thursday  String   @db.VarChar(20)
+  friday    String   @db.VarChar(20)
+  saturday  String   @db.VarChar(20)
+  sunday    String   @db.VarChar(20)
+  // La relation optionnelle vers Restaurant (1:1)
+  restaurant   Restaurant? @relation(fields: [restaurantId], references: [restaurant_id], onDelete: Cascade)
+  restaurantId String?     @unique @db.Uuid
 }
 
 model RestaurantType {
@@ -53,26 +67,27 @@ model Category {
 }
 
 model Article {
-  article_id  String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name        String       @db.VarChar(100)
-  desc        String?
-  price       Decimal      @db.Decimal(5, 2)
-  image       String?      @db.VarChar(255)
-  available   Boolean      @default(true)
+  article_id       String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name             String      @db.VarChar(100)
+  desc             String?
+  price            Float
+  image            String?     @db.VarChar(255)
+  available        Boolean     @default(true)
   
   // Champs pour les offres
-  has_offer   Boolean      @default(false)
-  offer_type  String?      @db.VarChar(20)  // "FREE_PRODUCT", "DISCOUNT", "1FOR2"
-  discount_percent Decimal? @db.Decimal(5, 2)  // Pourcentage de réduction si DISCOUNT
-  free_product_id  String?  @db.Uuid  // ID du produit gratuit si FREE_PRODUCT
+  has_offer        Boolean     @default(false)
+  offer_type       String?     @db.VarChar(20)  // "FREE_PRODUCT", "DISCOUNT", "2FOR1"
+  discount_percent Float?
+  free_product_id  String?     @db.Uuid  // ID du produit gratuit si FREE_PRODUCT
 
-  categories  Category[]
-  ingredients ArticleIngredient[]
-  supplements Supplement[]
-  restaurant_id      String @db.Uuid
-  restaurant         Restaurant @relation(fields: [restaurant_id], references: [restaurant_id], onDelete: Cascade)
-  created_at         DateTime  @default(now())
-  updated_at         DateTime  @updatedAt
+  categories       Category[]
+  ingredients      ArticleIngredient[]
+  supplements      Supplement[]
+  options          Option[]   // Relation optionnelle avec les options
+  restaurant_id    String      @db.Uuid
+  restaurant       Restaurant  @relation(fields: [restaurant_id], references: [restaurant_id], onDelete: Cascade)
+  created_at       DateTime    @default(now())
+  updated_at       DateTime    @updatedAt
 
   @@index([name])
   @@index([restaurant_id])
@@ -80,12 +95,12 @@ model Article {
 }
 
 model ArticleIngredient {
-  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  article_id  String   @db.Uuid
-  name        String   @db.VarChar(100)
-  removable   Boolean  @default(true)
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  article_id String   @db.Uuid
+  name       String   @db.VarChar(100)
+  removable  Boolean  @default(true)
 
-  article     Article  @relation(fields: [article_id], references: [article_id], onDelete: Cascade)
+  article    Article  @relation(fields: [article_id], references: [article_id], onDelete: Cascade)
 
   @@index([article_id])
 }
@@ -95,22 +110,36 @@ model Supplement {
   article_id    String   @db.Uuid
   name          String   @db.VarChar(100)
   is_optional   Boolean  @default(false)
-  extra_price   Decimal  @default(0.00) @db.Decimal(5, 2)
+  extra_price   Float    @default(0.00)
 
   article       Article  @relation(fields: [article_id], references: [article_id], onDelete: Cascade)
 
   @@index([article_id])
 }
 
+model Option {
+  option_id     String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  article_id    String   @db.Uuid
+  name          String   @db.VarChar(100)  // Nom de l'option (ex: "Goût", "Taille")
+  value         String   @db.VarChar(100)  // Valeur de l'option (ex: "Vanille", "Chocolat")
+  extra_price   Float?   @default(0.00)    // Prix supplémentaire si applicable
+  is_default    Boolean  @default(false)   // Si c'est l'option par défaut
+
+  article       Article  @relation(fields: [article_id], references: [article_id], onDelete: Cascade)
+
+  @@index([article_id])
+  @@index([name])
+}
+
 model Address {
-  id        Int       @id @default(autoincrement())
-  place_id  String?   @unique
-  street    String    @db.VarChar(100)
-  city      String    @db.VarChar(100)
-  postcode  String    @db.VarChar(20)
-  country   String    @db.VarChar(100)
-  lat       String    @db.VarChar(100)
-  lon       String    @db.VarChar(100)
+  id         Int         @id @default(autoincrement())
+  place_id   String?     @unique
+  street     String      @db.VarChar(100)
+  city       String      @db.VarChar(100)
+  postcode   String      @db.VarChar(20)
+  country    String      @db.VarChar(100)
+  lat        String      @db.VarChar(100)
+  lon        String      @db.VarChar(100)
   restaurants Restaurant[]
 
   @@index([place_id])

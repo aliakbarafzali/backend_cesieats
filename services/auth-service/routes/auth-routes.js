@@ -21,9 +21,9 @@ router.post('/register', async (req, res) => {
     if (address) {
       // Utilise l'identifiant Mapbox (mapbox_id) pour vérifier l'existence de l'adresse.
       let existingAddress = null;
-      if (address.mapbox_id) {
+      if (address.place_id) {
         existingAddress = await prisma.address.findUnique({
-          where: { place_id: address.mapbox_id }
+          where: { place_id: address.place_id }
         });
       }
       if (existingAddress) {
@@ -32,18 +32,18 @@ router.post('/register', async (req, res) => {
         newAddress = await prisma.address.create({
           data: {
             // On suppose que le champ place_id dans le modèle est désormais de type String
-            place_id: address.mapbox_id,
+            place_id: address.place_id,
             // On extrait le nom de la rue depuis context.address.street_name
-            street: address.name_preferred || "",
+            street: address.street || "",
             // La ville est récupérée depuis context.place.name
-            city: address.context?.place?.name || "",
+            city: address.city || "",
             // Le code postal depuis context.postcode.name
-            postcode: address.context?.postcode?.name || "",
+            postcode: address.postcode || "",
             // Le pays depuis context.country.name
-            country: address.context?.country?.name || "",
+            country: address.country || "",
             // Les coordonnées sont extraites depuis l'objet coordinates
-            lat: address.coordinates?.latitude?.toString() || "",
-            lon: address.coordinates?.longitude?.toString() || ""
+            lat: address.lat.toString() || "",
+            lon: address.lon.toString() || ""
           }
         });
       }
