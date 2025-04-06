@@ -2,17 +2,18 @@ FROM node:18
 
 WORKDIR /app
 
+# Copie package.json et lockfile
 COPY package*.json ./
 RUN npm install
 
+# Copie le code source + le script d'entrée
 COPY . .
 
-# Rendre le script exécutable
-COPY entrypoint.sh ./
+# Rend le script exécutable
 RUN chmod +x entrypoint.sh
 
-# Exposer le port
-EXPOSE 5000
+# Définit le shell par défaut et démarre le script
+ENTRYPOINT ["./entrypoint.sh"]
 
-# Démarrer via entrypoint
-CMD ["./entrypoint.sh"]
+# Expose le port de l'application
+EXPOSE 5000

@@ -11,7 +11,7 @@ Content-Type: application/json
   "opening_hours": "Lundi - Samedi : 12h - 14h, 19h - 23h",
   "restaurant_type": "Italien, Kebab",
   "average_rating": 4.7,
-  "owner_id": "9d3d1840-55d2-4476-863a-c9fd06eeba53"
+  "owner_id": "10644621-a798-4054-b2c0-4203e9eecd17"
 }
 
 
@@ -22,12 +22,12 @@ GET http://localhost:5001/api/restaurants
 
 ### 
 // Get Restaurant By Id
-GET http://localhost:5001/api/restaurants/542900b8-0f49-4a5a-bcc8-361844fb2298
+GET http://localhost:5001/api/restaurants/3bd46bae-92ef-4e3a-af1c-7a2e28e47a07
 
 ### 
 
 // By owner ID
-GET http://localhost:5001/api/restaurants?owner=64cba162-7963-4f0b-87d4-134f0e5a161e
+GET http://localhost:5001/api/restaurants?owner=4d42a145-3804-4a04-a73a-5996517f68a0
 
 ###
 
@@ -35,7 +35,7 @@ GET http://localhost:5001/api/restaurants?type=italien
 
 ###
 // Update Restaurant
-PUT http://localhost:5001/api/restaurants/542900b8-0f49-4a5a-bcc8-361844fb2298
+PUT http://localhost:5001/api/restaurants/3bd46bae-92ef-4e3a-af1c-7a2e28e47a07
 Content-Type: application/json
 
 {
@@ -47,7 +47,7 @@ Content-Type: application/json
 
 
 // Delete Restaurant
-DELETE http://localhost:5001/api/restaurants/542900b8-0f49-4a5a-bcc8-361844fb2298
+DELETE http://localhost:5001/api/restaurants/3bd46bae-92ef-4e3a-af1c-7a2e28e47a07
 
 ###
 // Get All Categories
@@ -60,6 +60,61 @@ POST http://localhost:5001/api/categories
 Content-Type: application/json
 
 {
-  "name": "Dessert",
-  "restaurant_id": "ccb77027-5578-4d4e-a0e5-9517ca7f8bb6"
+  "name": "Pizza",
+  "restaurant_id": "654ebbd7-667b-46d2-b288-468d9f5595b1"
+}
+
+
+### 
+
+
+
+DELETE http://localhost:5001/api/categories
+
+
+###
+
+POST http://localhost:5001/api/articles 
+Content-Type: application/json
+
+ {
+    "name": "Pizza Margherita",
+    "desc": "Tomate, mozzarella, basilic",
+    "price": 9.99,
+    "categoryIds": ["90e99467-c55f-4871-9492-7d059f867df7", "95150b2f-9b10-460c-bbb8-3c71a0f88fb3"]
+  }
+
+###
+
+POST http://localhost:5001/api/ingredients
+Content-Type: application/json
+
+{
+  "name": "Mozzarella",
+  "restaurant_id": "83ae1cc3-c436-48ab-8d45-d5c6e7485e29"
+}
+
+###
+
+GET http://localhost:5001/api/ingredients
+
+###
+GET http://localhost:5001/api/articles
+###
+
+POST http://localhost:5001/api/articles
+Content-Type: application/json
+
+{
+  "name": "Pizza 4 Pepperoni",
+  "desc": "avec supplément gorgonzola",
+  "price": 13.49,
+  "categoryIds": ["90e99467-c55f-4871-9492-7d059f867df7"],
+  "ingredients": [
+    {
+      "ingredient_id": "ffd269fb-68c2-475e-a39e-e9eb27b16eaa",
+      "is_optional": false,
+      "extra_price": 0.50
+    }
+  ]
 }
