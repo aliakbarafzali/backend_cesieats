@@ -96,7 +96,9 @@ export const getAllArticles = async (req, res, next) => {
       where,
       include: {
         categories: true,
-        ingredients: true
+        ingredients: true,
+        supplements: true,
+        options: true
       }
     });
 
@@ -114,7 +116,9 @@ export const getArticleById = async (req, res, next) => {
       where: { article_id: id },
       include: {
         categories: true,
-        ingredients: true
+        ingredients: true,
+        supplements: true,
+        options: true
       }
     });
 
