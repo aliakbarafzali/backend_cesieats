@@ -168,14 +168,13 @@ async function main() {
         restaurant_name: 'Burger King',
         restaurant_phone: '+33123456789',
         restaurant_email: 'contact@burgerking.fr',
-        image_url: 'https://example.com/burgerking.jpg',
-        banner_image_url: 'https://example.com/burgerking-banner.jpg',
+        image_url: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fburger-king.avif?alt=media&token=defd732d-3a06-4221-b0ec-343d922b508f',
+        banner_image_url: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fburger-king-banner.avif?alt=media&token=bf8b20c9-3df5-47a2-bdae-dc7ed703528e',
         owner_id: '550e8400-e29b-41d4-a716-446655440000',
         rating: 0,
         offers_available: true,
         address_id: addresses[0].id,
         restaurant_type: { connect: [{ name: 'Fast Food' }] },
-        // Création imbriquée des horaires d'ouverture
         openingHours: {
           create: {
             monday: "07:00-23:30",
@@ -195,8 +194,8 @@ async function main() {
         restaurant_name: 'Pizza Hut',
         restaurant_phone: '+33987654321',
         restaurant_email: 'contact@pizzahut.fr',
-        image_url: 'https://example.com/pizzahut.jpg',
-        banner_image_url: 'https://example.com/pizzahut-banner.jpg',
+        image_url: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fpizza-hut.avif?alt=media&token=92b9e50f-8a83-4f98-8c30-79fbba888a8e',
+        banner_image_url: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fpizza-hut-banner.avif?alt=media&token=5a3b8d54-78dc-4518-b742-25f22fd893ee',
         owner_id: '550e8400-e29b-41d4-a716-446655440001',
         rating: 0,
         offers_available: true,
@@ -223,8 +222,8 @@ async function main() {
         restaurant_name: 'Sushi World',
         restaurant_phone: '+33111222333',
         restaurant_email: 'contact@sushiworld.fr',
-        image_url: 'https://example.com/sushiworld.jpg',
-        banner_image_url: 'https://example.com/sushiworld-banner.jpg',
+        image_url: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fsushi-world.avif?alt=media&token=c5aca88f-4a9c-4a70-b80f-ffcc99bec67a',
+        banner_image_url: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fsushi-world-banner.avif?alt=media&token=056f8ad8-fd67-4533-b3d2-48c12eb433de',
         owner_id: '550e8400-e29b-41d4-a716-446655440004',
         rating: 0,
         offers_available: false,
@@ -251,8 +250,8 @@ async function main() {
         restaurant_name: 'The Breakfast Club',
         restaurant_phone: '+33144556677',
         restaurant_email: 'contact@breakfastclub.fr',
-        image_url: 'https://example.com/breakfastclub.jpg',
-        banner_image_url: 'https://example.com/breakfastclub-banner.jpg',
+        image_url: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fthe-breakfast-club.avif?alt=media&token=87d55fa1-f4b4-43e5-96b4-8d8186cc09cc',
+        banner_image_url: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fthe-breakfast-club-banner.avif?alt=media&token=a90998f5-62ef-4aed-a36e-6bc1fedd2249',
         owner_id: '550e8400-e29b-41d4-a716-446655440006',
         rating: 0,
         offers_available: true,
@@ -279,8 +278,8 @@ async function main() {
         restaurant_name: 'Spicy Chicken Express',
         restaurant_phone: '+33155667788',
         restaurant_email: 'contact@spicychicken.fr',
-        image_url: 'https://example.com/spicychicken.jpg',
-        banner_image_url: 'https://example.com/spicychicken-banner.jpg',
+        image_url: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fspicy-chicken.avif?alt=media&token=59871b82-a557-4bd3-941e-fc72cd174e20',
+        banner_image_url: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fspicy-chicken-banner.avif?alt=media&token=8ac7914e-b849-4aa9-8bec-3706c58ceeb7',
         owner_id: '550e8400-e29b-41d4-a716-446655440007',
         rating: 0,
         offers_available: true,
@@ -303,17 +302,16 @@ async function main() {
     })
   ]);
 
-  // Création des restaurants supplémentaires
   console.log('🍽️ Création des restaurants supplémentaires...');
   const additionalRestaurants = await Promise.all([
-    // Restaurant Indien
+    // Restaurant Indien : Taj Mahal
     prisma.restaurant.create({
       data: {
         restaurant_name: 'Taj Mahal',
         restaurant_phone: '+33123456790',
         restaurant_email: 'contact@tajmahal.fr',
-        image_url: 'https://example.com/tajmahal.jpg',
-        banner_image_url: 'https://example.com/tajmahal-banner.jpg',
+        image_url: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Ftaj-mahal.avif?alt=media&token=ae800d9d-2d89-4bb3-8bd5-c3a8dac3b67b',
+        banner_image_url: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Ftaj-mahal-banner.avif?alt=media&token=31f7b302-8e76-45c2-b0d2-0ebb9d3218fc',
         owner_id: '550e8400-e29b-41d4-a716-446655440020',
         rating: 0,
         offers_available: true,
@@ -334,14 +332,14 @@ async function main() {
         }
       }
     }),
-    // Restaurant Chinois
+    // Restaurant Chinois : Dragon d'Or
     prisma.restaurant.create({
       data: {
         restaurant_name: 'Dragon d\'Or',
         restaurant_phone: '+33123456791',
         restaurant_email: 'contact@dragondor.fr',
-        image_url: 'https://example.com/dragondor.jpg',
-        banner_image_url: 'https://example.com/dragondor-banner.jpg',
+        image_url: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fdragon-dor.avif?alt=media&token=c90acf34-d113-43a2-8505-699a9d9a0417',
+        banner_image_url: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fdragon-dor-banner.avif?alt=media&token=f304d525-a303-42ac-8b9d-14dbc6dbedfc',
         owner_id: '550e8400-e29b-41d4-a716-446655440021',
         rating: 0,
         offers_available: true,
@@ -362,14 +360,14 @@ async function main() {
         }
       }
     }),
-    // Restaurant Grec
+    // Restaurant Grec : Ouzo
     prisma.restaurant.create({
       data: {
         restaurant_name: 'Ouzo',
         restaurant_phone: '+33123456792',
         restaurant_email: 'contact@ouzo.fr',
-        image_url: 'https://example.com/ouzo.jpg',
-        banner_image_url: 'https://example.com/ouzo-banner.jpg',
+        image_url: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fouzo.avif?alt=media&token=faf7c571-5da3-4aca-a3fc-c1411577a600',
+        banner_image_url: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fouzo-banner.avif?alt=media&token=173d22b1-0b7b-4598-b363-8a2aed48dd20',
         owner_id: '550e8400-e29b-41d4-a716-446655440022',
         rating: 0,
         offers_available: true,
@@ -390,14 +388,14 @@ async function main() {
         }
       }
     }),
-    // Restaurant Kebab
+    // Restaurant Kebab : Sultan Kebab
     prisma.restaurant.create({
       data: {
         restaurant_name: 'Sultan Kebab',
         restaurant_phone: '+33123456793',
         restaurant_email: 'contact@sultankebab.fr',
-        image_url: 'https://example.com/sultankebab.jpg',
-        banner_image_url: 'https://example.com/sultankebab-banner.jpg',
+        image_url: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fsultan-kebab.jpeg?alt=media&token=59e55d02-b911-4239-93ee-7ce9826986ae',
+        banner_image_url: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fsultan-kebab-banner.jpeg?alt=media&token=59eab0af-b159-415a-bc0d-6d228f11a954',
         owner_id: '550e8400-e29b-41d4-a716-446655440023',
         rating: 0,
         offers_available: true,
@@ -418,14 +416,14 @@ async function main() {
         }
       }
     }),
-    // Restaurant Coréen
+    // Restaurant Coréen : Seoul Garden
     prisma.restaurant.create({
       data: {
         restaurant_name: 'Seoul Garden',
         restaurant_phone: '+33123456794',
         restaurant_email: 'contact@seoulgarden.fr',
-        image_url: 'https://example.com/seoulgarden.jpg',
-        banner_image_url: 'https://example.com/seoulgarden-banner.jpg',
+        image_url: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fseoul-garden.jpeg?alt=media&token=04ffedbd-0bf7-41c3-a081-17e986ef6fc9',
+        banner_image_url: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fseoul-garden-banner.jpeg?alt=media&token=9fdf4103-9bbd-4563-ba39-d1b9f148284c',
         owner_id: '550e8400-e29b-41d4-a716-446655440024',
         rating: 0,
         offers_available: true,
@@ -724,13 +722,15 @@ async function main() {
         name: 'Whopper',
         price: 8.99,
         desc: 'Burger signature avec viande de bœuf grillée',
-        image: 'https://example.com/whopper.jpg',
+        image: "https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fwhopper.webp?alt=media&token=d1b15355-9dd6-40dc-af4d-10b8fd1bf233",
         available: true,
         has_offer: true,
         offer_type: 'DISCOUNT',
         discount_percent: 20.00,
         restaurant_id: restaurants[0].restaurant_id,
-        categories: { connect: [{ category_id: bkCategories[0].category_id }] },
+        categories: {
+          connect: [{ category_id: bkCategories[0].category_id }]
+        },
         ingredients: {
           create: [
             { name: 'Pain', removable: false },
@@ -755,13 +755,11 @@ async function main() {
         name: 'Double Whopper',
         price: 8.99,
         desc: 'Double burger avec double viande',
-        image: 'https://example.com/doublewhopper.jpg',
+        image: "https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fdouble-whopper.webp?alt=media&token=e1b8e712-d3c1-44fd-a434-4922bb3361f9",
         available: true,
         restaurant_id: restaurants[0].restaurant_id,
         categories: {
-          connect: {
-            category_id: bkCategories[0].category_id
-          }
+          connect: [{ category_id: bkCategories[0].category_id }]
         },
         options: {
           create: [
@@ -777,13 +775,11 @@ async function main() {
         name: 'Chicken Royale',
         price: 7.99,
         desc: 'Burger au poulet pané',
-        image: 'https://example.com/chickenroyale.jpg',
+        image: "https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fchicken-royal.png?alt=media&token=64ab8438-78c6-4ce9-a4f4-c648898e7312",
         available: true,
         restaurant_id: restaurants[0].restaurant_id,
         categories: {
-          connect: {
-            category_id: bkCategories[0].category_id
-          }
+          connect: [{ category_id: bkCategories[0].category_id }]
         }
       }
     }),
@@ -792,10 +788,12 @@ async function main() {
         name: 'Veggie Burger',
         price: 7.49,
         desc: 'Burger végétarien avec galette de légumes',
-        image: 'https://example.com/veggieburger.jpg',
+        image: "https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fveggie-burger.webp?alt=media&token=3a47b14a-1a79-4a68-bf74-5b2231c08aa2",
         available: true,
         restaurant_id: restaurants[0].restaurant_id,
-        categories: { connect: [{ category_id: bkCategories[0].category_id }] },
+        categories: {
+          connect: [{ category_id: bkCategories[0].category_id }]
+        },
         ingredients: {
           create: [
             { name: 'Pain', removable: false },
@@ -818,10 +816,12 @@ async function main() {
         name: 'Bacon King',
         price: 9.99,
         desc: 'Burger avec double viande et double bacon',
-        image: 'https://example.com/baconking.jpg',
+        image: "https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fbacon-king.avif?alt=media&token=a7ac9ef2-e0ac-4a2a-ba62-85e9374d5c86",
         available: true,
         restaurant_id: restaurants[0].restaurant_id,
-        categories: { connect: [{ category_id: bkCategories[0].category_id }] },
+        categories: {
+          connect: [{ category_id: bkCategories[0].category_id }]
+        },
         ingredients: {
           create: [
             { name: 'Pain', removable: false },
@@ -846,10 +846,12 @@ async function main() {
         name: 'Fries',
         price: 3.49,
         desc: 'Frites croustillantes',
-        image: 'https://example.com/fries.jpg',
+        image: "https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Ffrites.webp?alt=media&token=7c090870-61e7-4b6c-9f3b-c2190b65e82b",
         available: true,
         restaurant_id: restaurants[0].restaurant_id,
-        categories: { connect: [{ category_id: bkCategories[1].category_id }] },
+        categories: {
+          connect: [{ category_id: bkCategories[1].category_id }]
+        },
         options: {
           create: [
             { name: 'Taille', value: 'Petite', is_default: true },
@@ -871,10 +873,12 @@ async function main() {
         name: 'Onion Rings',
         price: 4.99,
         desc: 'Rondelles d\'oignon panées',
-        image: 'https://example.com/onionrings.jpg',
+        image: "https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fonion-rings.jpg?alt=media&token=078c2046-6f31-46e2-acb2-2e776077bf7d",
         available: true,
         restaurant_id: restaurants[0].restaurant_id,
-        categories: { connect: [{ category_id: bkCategories[1].category_id }] },
+        categories: {
+          connect: [{ category_id: bkCategories[1].category_id }]
+        },
         options: {
           create: [
             { name: 'Taille', value: 'Petite', is_default: true },
@@ -889,10 +893,12 @@ async function main() {
         name: 'Chicken Nuggets',
         price: 4.99,
         desc: 'Nuggets croustillants de poulet',
-        image: 'https://example.com/nuggets.jpg',
+        image: "https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fchicken-nuggets.jpg?alt=media&token=716259f6-61ac-4dce-87fa-438ae8340d55",
         available: true,
         restaurant_id: restaurants[0].restaurant_id,
-        categories: { connect: [{ category_id: bkCategories[1].category_id }] },
+        categories: {
+          connect: [{ category_id: bkCategories[1].category_id }]
+        },
         options: {
           create: [
             { name: 'Quantité', value: '6 pièces', is_default: true },
@@ -914,10 +920,12 @@ async function main() {
         name: 'Cheese Bites',
         price: 4.49,
         desc: 'Bouchées de fromage fondant',
-        image: 'https://example.com/cheesebites.jpg',
+        image: "https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fcheese-bites.jpg?alt=media&token=11bf65df-24ac-4cf0-8c0e-9b5cb64da01e",
         available: true,
         restaurant_id: restaurants[0].restaurant_id,
-        categories: { connect: [{ category_id: bkCategories[1].category_id }] },
+        categories: {
+          connect: [{ category_id: bkCategories[1].category_id }]
+        },
         options: {
           create: [
             { name: 'Quantité', value: '6 pièces', is_default: true },
@@ -932,10 +940,12 @@ async function main() {
         name: 'Milkshake',
         price: 4.50,
         desc: 'Milkshake onctueux, saveur au choix',
-        image: 'https://example.com/milkshake.jpg',
+        image: "https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fmilkshake.webp?alt=media&token=12ac67fe-de39-458e-9301-f4c298201de5",
         available: true,
         restaurant_id: restaurants[0].restaurant_id,
-        categories: { connect: [{ category_id: bkCategories[2].category_id }] },
+        categories: {
+          connect: [{ category_id: bkCategories[2].category_id }]
+        },
         options: {
           create: [
             { name: 'Goût', value: 'Vanille', is_default: true },
@@ -959,10 +969,12 @@ async function main() {
         name: 'Coke',
         price: 2.99,
         desc: 'Boisson gazeuse rafraîchissante',
-        image: 'https://example.com/coke.jpg',
+        image: "https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fcoke.jpg?alt=media&token=6cffe88e-db0e-4f6d-8813-04043a11717b",
         available: true,
         restaurant_id: restaurants[0].restaurant_id,
-        categories: { connect: [{ category_id: bkCategories[2].category_id }] },
+        categories: {
+          connect: [{ category_id: bkCategories[2].category_id }]
+        },
         options: {
           create: [
             { name: 'Taille', value: 'Petite', is_default: true },
@@ -977,10 +989,12 @@ async function main() {
         name: 'Fanta',
         price: 2.99,
         desc: 'Boisson fruitée et pétillante',
-        image: 'https://example.com/fanta.jpg',
+        image: "https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Ffanta.webp?alt=media&token=b5e7b528-2844-4fb2-a6d3-464a31714b1a",
         available: true,
         restaurant_id: restaurants[0].restaurant_id,
-        categories: { connect: [{ category_id: bkCategories[2].category_id }] },
+        categories: {
+          connect: [{ category_id: bkCategories[2].category_id }]
+        },
         options: {
           create: [
             { name: 'Taille', value: 'Petite', is_default: true },
@@ -995,10 +1009,12 @@ async function main() {
         name: 'Ice Tea',
         price: 2.99,
         desc: 'Thé glacé rafraîchissant',
-        image: 'https://example.com/icetea.jpg',
+        image: "https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fice-tea.webp?alt=media&token=74f11776-3d0a-4246-97e5-97c94c023928",
         available: true,
         restaurant_id: restaurants[0].restaurant_id,
-        categories: { connect: [{ category_id: bkCategories[2].category_id }] },
+        categories: {
+          connect: [{ category_id: bkCategories[2].category_id }]
+        },
         options: {
           create: [
             { name: 'Taille', value: 'Petite', is_default: true },
@@ -1013,10 +1029,12 @@ async function main() {
         name: 'Water',
         price: 1.99,
         desc: 'Eau minérale',
-        image: 'https://example.com/water.jpg',
+        image: "https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fwater.png?alt=media&token=f0c78f3a-caae-4b18-867b-3ea3a0b6d174",
         available: true,
         restaurant_id: restaurants[0].restaurant_id,
-        categories: { connect: [{ category_id: bkCategories[2].category_id }] },
+        categories: {
+          connect: [{ category_id: bkCategories[2].category_id }]
+        },
         options: {
           create: [
             { name: 'Taille', value: 'Petite', is_default: true },
@@ -1025,90 +1043,17 @@ async function main() {
         }
       }
     }),
-    // Catégorie Burgers
-    prisma.article.create({
-      data: {
-        name: 'Double Whopper',
-        price: 8.99,
-        desc: 'Double burger avec double viande',
-        image: 'https://example.com/doublewhopper.jpg',
-        available: true,
-        restaurant_id: restaurants[0].restaurant_id,
-        categories: {
-          connect: {
-            category_id: bkCategories[0].category_id
-          }
-        },
-        options: {
-          create: [
-            { name: 'Cuisson', value: 'Bien cuit', is_default: true },
-            { name: 'Cuisson', value: 'À point', is_default: false },
-            { name: 'Cuisson', value: 'Saignant', is_default: false }
-          ]
-        }
-      }
-    }),
-    prisma.article.create({
-      data: {
-        name: 'Chicken Royale',
-        price: 7.99,
-        desc: 'Burger au poulet pané',
-        image: 'https://example.com/chickenroyale.jpg',
-        available: true,
-        restaurant_id: restaurants[0].restaurant_id,
-        categories: {
-          connect: {
-            category_id: bkCategories[0].category_id
-          }
-        }
-      }
-    }),
-
-    // Catégorie Accompagnements
-    prisma.article.create({
-      data: {
-        name: 'Onion Rings',
-        price: 4.99,
-        desc: 'Rondelles d\'oignon panées',
-        image: 'https://example.com/onionrings.jpg',
-        available: true,
-        restaurant_id: restaurants[0].restaurant_id,
-        categories: {
-          connect: {
-            category_id: bkCategories[1].category_id
-          }
-        }
-      }
-    }),
-    prisma.article.create({
-      data: {
-        name: 'Salade César',
-        price: 6.99,
-        desc: 'Salade césar avec poulet',
-        image: 'https://example.com/saladecesar.jpg',
-        available: true,
-        restaurant_id: restaurants[0].restaurant_id,
-        categories: {
-          connect: {
-            category_id: bkCategories[1].category_id
-          }
-        }
-      }
-    }),
-
     // Catégorie Desserts
     prisma.article.create({
       data: {
         name: 'Sundae Caramel',
         price: 4.99,
         desc: 'Glace vanille avec caramel',
-        image: 'https://example.com/sundaecaramel.jpg',
+        image: "https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fsundae-caramel.avif?alt=media&token=61f74432-715b-46d9-97c8-e54f1db4495a",
         available: true,
         restaurant_id: restaurants[0].restaurant_id,
         categories: {
-          connect: {
-            category_id: bkCategories[3].category_id
-          }
+          connect: [{ category_id: bkCategories[3].category_id }]
         }
       }
     })
@@ -1123,7 +1068,7 @@ async function main() {
         name: 'Reine',
         price: 12.99,
         desc: 'Pizza classique avec jambon et champignons',
-        image: 'https://example.com/reine.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fpizza-reine.jpg?alt=media&token=e0e448bd-8dc7-4706-beae-dea072d679cf',
         available: true,
         has_offer: true,
         offer_type: '2FOR1',
@@ -1152,7 +1097,7 @@ async function main() {
         name: 'Margherita',
         price: 10.99,
         desc: 'Pizza traditionnelle avec tomate et mozzarella',
-        image: 'https://example.com/margherita.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fpizza-margherita.webp?alt=media&token=988da7d2-dbf2-483c-ac2c-888a2b1f2515',
         available: true,
         restaurant_id: restaurants[1].restaurant_id,
         categories: { connect: [{ category_id: phCategories[0].category_id }] },
@@ -1177,7 +1122,7 @@ async function main() {
         name: 'Pepperoni',
         price: 11.99,
         desc: 'Pizza avec sauce tomate et pepperoni',
-        image: 'https://example.com/pepperoni.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fpizza-pepperonni.jpg?alt=media&token=2ce1a657-46eb-4f04-9b3d-54c3b609e477',
         available: true,
         restaurant_id: restaurants[1].restaurant_id,
         categories: { connect: [{ category_id: phCategories[0].category_id }] },
@@ -1202,7 +1147,7 @@ async function main() {
         name: 'Vegetarian',
         price: 12.99,
         desc: 'Pizza végétarienne avec légumes frais',
-        image: 'https://example.com/vegetarian.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fpizza-vegetarienne-.avif?alt=media&token=1603a93d-99ae-483c-bfeb-01604ac2e9ed',
         available: true,
         restaurant_id: restaurants[1].restaurant_id,
         categories: { connect: [{ category_id: phCategories[0].category_id }] },
@@ -1230,7 +1175,7 @@ async function main() {
         name: 'Hawaiian',
         price: 13.99,
         desc: 'Pizza avec jambon et ananas',
-        image: 'https://example.com/hawaiian.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fpizza-hawaian.jpeg?alt=media&token=56d72e89-57ff-4bde-abac-2a24632eaa99',
         available: true,
         restaurant_id: restaurants[1].restaurant_id,
         categories: { connect: [{ category_id: phCategories[0].category_id }] },
@@ -1257,7 +1202,7 @@ async function main() {
         name: 'Spaghetti Bolognese',
         price: 11.99,
         desc: 'Spaghetti avec sauce bolognaise maison',
-        image: 'https://example.com/spaghetti.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fpasta-bolognese.webp?alt=media&token=7cb95432-afad-4c8e-8a62-e34dde8ac4ad',
         available: true,
         restaurant_id: restaurants[1].restaurant_id,
         categories: { connect: [{ category_id: phCategories[1].category_id }] },
@@ -1271,7 +1216,7 @@ async function main() {
         supplements: {
           create: [
             { name: 'Extra Parmesan', is_optional: true, extra_price: 1.00 },
-            { name: 'Pain à l\'ail', is_optional: true, extra_price: 2.00 }
+            { name: "Pain à l'ail", is_optional: true, extra_price: 2.00 }
           ]
         }
       }
@@ -1281,7 +1226,7 @@ async function main() {
         name: 'Fettuccine Alfredo',
         price: 12.99,
         desc: 'Fettuccine avec sauce crémeuse au fromage',
-        image: 'https://example.com/fettuccine.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Ffettucine-alfredo.jpeg?alt=media&token=03ff1aad-8c06-4fc5-a88c-923137226dec',
         available: true,
         restaurant_id: restaurants[1].restaurant_id,
         categories: { connect: [{ category_id: phCategories[1].category_id }] },
@@ -1306,7 +1251,7 @@ async function main() {
         name: 'Tiramisu',
         price: 5.99,
         desc: 'Dessert italien classique au café',
-        image: 'https://example.com/tiramisu.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Ftiramisu.webp?alt=media&token=334949a2-56ee-4fc3-970d-66bef3741c35',
         available: true,
         restaurant_id: restaurants[1].restaurant_id,
         categories: { connect: [{ category_id: phCategories[2].category_id }] },
@@ -1323,7 +1268,7 @@ async function main() {
         name: 'Panna Cotta',
         price: 4.99,
         desc: 'Crème dessert italienne avec coulis de fruits rouges',
-        image: 'https://example.com/pannacotta.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fpanna-cotta.avif?alt=media&token=e90fc6e1-e6da-4211-a5fe-0c4317bab423',
         available: true,
         restaurant_id: restaurants[1].restaurant_id,
         categories: { connect: [{ category_id: phCategories[2].category_id }] },
@@ -1341,7 +1286,7 @@ async function main() {
         name: 'Lemonade',
         price: 3.99,
         desc: 'Limonade maison rafraîchissante',
-        image: 'https://example.com/lemonade.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Flemonade.jpg?alt=media&token=85e8ee2b-a7cf-4069-98b2-1d7b3469eed6',
         available: true,
         restaurant_id: restaurants[1].restaurant_id,
         categories: { connect: [{ category_id: phCategories[3].category_id }] },
@@ -1358,7 +1303,7 @@ async function main() {
         name: 'Italian Soda',
         price: 4.49,
         desc: 'Soda italien avec sirop de fruits',
-        image: 'https://example.com/italiansoda.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fitalian-soda.jpg?alt=media&token=ee75f913-88f9-4ad1-a96c-bb4828e3a176',
         available: true,
         restaurant_id: restaurants[1].restaurant_id,
         categories: { connect: [{ category_id: phCategories[3].category_id }] },
@@ -1371,20 +1316,16 @@ async function main() {
         }
       }
     }),
-    // Catégorie Pizzas
+    // Catégorie Pizzas complémentaires
     prisma.article.create({
       data: {
         name: 'Pizza Quatre Fromages',
         price: 12.99,
         desc: 'Pizza aux quatre fromages',
-        image: 'https://example.com/quatrefromages.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fpizza-quatre-fromages.jpg?alt=media&token=23bc96fa-df1a-4d8c-9a27-41534be5b495',
         available: true,
         restaurant_id: restaurants[1].restaurant_id,
-        categories: {
-          connect: {
-            category_id: phCategories[0].category_id
-          }
-        },
+        categories: { connect: [{ category_id: phCategories[0].category_id }] },
         options: {
           create: [
             { name: 'Taille', value: 'Petite', is_default: true },
@@ -1399,14 +1340,10 @@ async function main() {
         name: 'Pizza Végétarienne',
         price: 11.99,
         desc: 'Pizza aux légumes',
-        image: 'https://example.com/vegetarienne.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fpizza-vegetarienne-.avif?alt=media&token=1603a93d-99ae-483c-bfeb-01604ac2e9ed',
         available: true,
         restaurant_id: restaurants[1].restaurant_id,
-        categories: {
-          connect: {
-            category_id: phCategories[0].category_id
-          }
-        },
+        categories: { connect: [{ category_id: phCategories[0].category_id }] },
         options: {
           create: [
             { name: 'Taille', value: 'Petite', is_default: true },
@@ -1416,21 +1353,16 @@ async function main() {
         }
       }
     }),
-
-    // Catégorie Pâtes
+    // Catégorie Pâtes complémentaires
     prisma.article.create({
       data: {
         name: 'Pâtes Carbonara',
         price: 9.99,
         desc: 'Pâtes à la carbonara',
-        image: 'https://example.com/carbonara.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fpates-carbonara.jpeg?alt=media&token=a3b3020b-ff71-47c2-a94d-b5d2f7661a87',
         available: true,
         restaurant_id: restaurants[1].restaurant_id,
-        categories: {
-          connect: {
-            category_id: phCategories[1].category_id
-          }
-        }
+        categories: { connect: [{ category_id: phCategories[1].category_id }] }
       }
     }),
     prisma.article.create({
@@ -1438,45 +1370,36 @@ async function main() {
         name: 'Pâtes Bolognaise',
         price: 9.99,
         desc: 'Pâtes à la bolognaise',
-        image: 'https://example.com/bolognaise.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fpasta-bolognese.webp?alt=media&token=7cb95432-afad-4c8e-8a62-e34dde8ac4ad',
         available: true,
         restaurant_id: restaurants[1].restaurant_id,
-        categories: {
-          connect: {
-            category_id: phCategories[1].category_id
-          }
-        }
+        categories: { connect: [{ category_id: phCategories[1].category_id }] }
       }
     }),
-
-    // Catégorie Desserts
+    // Catégorie Desserts complémentaires
     prisma.article.create({
       data: {
         name: 'Tiramisu',
         price: 5.99,
         desc: 'Tiramisu classique',
-        image: 'https://example.com/tiramisu.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Ftiramisu.webp?alt=media&token=334949a2-56ee-4fc3-970d-66bef3741c35',
         available: true,
         restaurant_id: restaurants[1].restaurant_id,
-        categories: {
-          connect: {
-            category_id: phCategories[3].category_id
-          }
-        }
+        categories: { connect: [{ category_id: phCategories[3].category_id }] }
       }
     })
-  ]);
+  ]);  
 
   // --- Sushi World
   console.log('🍣 Création des articles pour Sushi World...');
-  await Promise.all([
+  await Promise.all([ 
     // Catégorie Sushi
     prisma.article.create({
       data: {
         name: 'California Roll',
         price: 8.99,
         desc: 'Rouleau de sushi avec crabe, avocat et concombre',
-        image: 'https://example.com/californiaroll.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fcalifornia-roll.webp?alt=media&token=6315b41d-f934-4906-abbf-ec6f424611ad',
         available: true,
         restaurant_id: restaurants[2].restaurant_id,
         categories: { connect: [{ category_id: swCategories[0].category_id }] },
@@ -1503,7 +1426,7 @@ async function main() {
         name: 'Salmon Roll',
         price: 9.99,
         desc: 'Rouleau de sushi avec saumon frais',
-        image: 'https://example.com/salmonroll.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fsalmon-roll.webp?alt=media&token=0d2248aa-4711-49dc-91c9-74c3b90ce8da',
         available: true,
         restaurant_id: restaurants[2].restaurant_id,
         categories: { connect: [{ category_id: swCategories[0].category_id }] },
@@ -1528,7 +1451,7 @@ async function main() {
         name: 'Dragon Roll',
         price: 12.99,
         desc: 'Rouleau de sushi avec anguille et avocat',
-        image: 'https://example.com/dragonroll.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fdragon-roll.jpg?alt=media&token=2899fe17-9b3c-4b1d-a0a4-3e4246348317',
         available: true,
         restaurant_id: restaurants[2].restaurant_id,
         categories: { connect: [{ category_id: swCategories[0].category_id }] },
@@ -1554,7 +1477,7 @@ async function main() {
         name: 'Rainbow Roll',
         price: 13.99,
         desc: 'Rouleau de sushi avec différents poissons',
-        image: 'https://example.com/rainbowroll.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Frainbow-roll.jpg?alt=media&token=2c05870d-9ee6-428d-9e3b-aec2dbd6caf5',
         available: true,
         restaurant_id: restaurants[2].restaurant_id,
         categories: { connect: [{ category_id: swCategories[0].category_id }] },
@@ -1575,7 +1498,7 @@ async function main() {
         name: 'Tonkotsu Ramen',
         price: 14.99,
         desc: 'Ramen au bouillon de porc',
-        image: 'https://example.com/tonkotsu.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Ftonkotsu-ramen.jpg?alt=media&token=794c0783-325d-42d8-bf85-bd94e1e66a2d',
         available: true,
         restaurant_id: restaurants[2].restaurant_id,
         categories: { connect: [{ category_id: swCategories[1].category_id }] },
@@ -1602,7 +1525,7 @@ async function main() {
         name: 'Miso Ramen',
         price: 13.99,
         desc: 'Ramen au bouillon miso',
-        image: 'https://example.com/misoramen.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fmiso-ramen.jpg?alt=media&token=76f3f2b8-fbfc-4393-bdcc-77903ae98a94',
         available: true,
         restaurant_id: restaurants[2].restaurant_id,
         categories: { connect: [{ category_id: swCategories[1].category_id }] },
@@ -1623,7 +1546,7 @@ async function main() {
         name: 'Mochi Ice Cream',
         price: 4.99,
         desc: 'Glace japonaise enrobée de pâte de riz',
-        image: 'https://example.com/mochi.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fmochi-ice-cream.jpg?alt=media&token=bbf3337e-270e-4267-9684-bb8ca97a3ad6',
         available: true,
         restaurant_id: restaurants[2].restaurant_id,
         categories: { connect: [{ category_id: swCategories[2].category_id }] },
@@ -1642,7 +1565,7 @@ async function main() {
         name: 'Dorayaki',
         price: 5.99,
         desc: 'Pancake japonais fourré à la pâte de haricots rouges',
-        image: 'https://example.com/dorayaki.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fdorayaki.webp?alt=media&token=6dd42e0d-6003-4992-97df-505e11819f59',
         available: true,
         restaurant_id: restaurants[2].restaurant_id,
         categories: { connect: [{ category_id: swCategories[2].category_id }] },
@@ -1661,7 +1584,7 @@ async function main() {
         name: 'Green Tea',
         price: 3.99,
         desc: 'Thé vert japonais traditionnel',
-        image: 'https://example.com/greentea.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fgreen-tea.jpg?alt=media&token=b96b4e02-fd35-4654-9d82-00428db64924',
         available: true,
         restaurant_id: restaurants[2].restaurant_id,
         categories: { connect: [{ category_id: swCategories[3].category_id }] },
@@ -1678,7 +1601,7 @@ async function main() {
         name: 'Sake',
         price: 8.99,
         desc: 'Alcool de riz japonais',
-        image: 'https://example.com/sake.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fsake.webp?alt=media&token=b1949381-ca0a-4994-9592-08c31ed9ef63',
         available: true,
         restaurant_id: restaurants[2].restaurant_id,
         categories: { connect: [{ category_id: swCategories[3].category_id }] },
@@ -1696,14 +1619,10 @@ async function main() {
         name: 'Gyoza',
         price: 6.99,
         desc: 'Raviolis japonais',
-        image: 'https://example.com/gyoza.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fgyoza.jpg?alt=media&token=1e5d7993-280c-42ab-b240-8c3add1f4a40',
         available: true,
         restaurant_id: restaurants[2].restaurant_id,
-        categories: {
-          connect: {
-            category_id: swCategories[0].category_id
-          }
-        },
+        categories: { connect: [{ category_id: swCategories[0].category_id }] },
         options: {
           create: [
             { name: 'Garniture', value: 'Porc', is_default: true },
@@ -1717,31 +1636,23 @@ async function main() {
         name: 'Edamame',
         price: 4.99,
         desc: 'Fèves de soja',
-        image: 'https://example.com/edamame.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fedamame.jpg?alt=media&token=732e67a6-49fd-4fb1-8a22-42e786589089',
         available: true,
         restaurant_id: restaurants[2].restaurant_id,
-        categories: {
-          connect: {
-            category_id: swCategories[0].category_id
-          }
-        }
+        categories: { connect: [{ category_id: swCategories[0].category_id }] }
       }
     }),
-
-    // Catégorie Sushis
+    
+    // Catégorie Sushis complémentaires
     prisma.article.create({
       data: {
         name: 'California Roll',
         price: 8.99,
         desc: 'Rouleau californien',
-        image: 'https://example.com/californiaroll.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fcalifornia-roll.webp?alt=media&token=6315b41d-f934-4906-abbf-ec6f424611ad',
         available: true,
         restaurant_id: restaurants[2].restaurant_id,
-        categories: {
-          connect: {
-            category_id: swCategories[1].category_id
-          }
-        }
+        categories: { connect: [{ category_id: swCategories[1].category_id }] }
       }
     }),
     prisma.article.create({
@@ -1749,31 +1660,23 @@ async function main() {
         name: 'Dragon Roll',
         price: 12.99,
         desc: 'Rouleau dragon',
-        image: 'https://example.com/dragonroll.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fdragon-roll.jpg?alt=media&token=2899fe17-9b3c-4b1d-a0a4-3e4246348317',
         available: true,
         restaurant_id: restaurants[2].restaurant_id,
-        categories: {
-          connect: {
-            category_id: swCategories[1].category_id
-          }
-        }
+        categories: { connect: [{ category_id: swCategories[1].category_id }] }
       }
     }),
-
-    // Catégorie Desserts
+    
+    // Catégorie Desserts complémentaires
     prisma.article.create({
       data: {
         name: 'Mochi',
         price: 5.99,
         desc: 'Glace mochi',
-        image: 'https://example.com/mochi.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fmochi.webp?alt=media&token=6a1f5959-edbb-4a22-92af-56aab68f862c',
         available: true,
         restaurant_id: restaurants[2].restaurant_id,
-        categories: {
-          connect: {
-            category_id: swCategories[3].category_id
-          }
-        },
+        categories: { connect: [{ category_id: swCategories[3].category_id }] },
         options: {
           create: [
             { name: 'Parfum', value: 'Thé vert', is_default: true },
@@ -1783,7 +1686,7 @@ async function main() {
         }
       }
     })
-  ]);
+  ]);  
 
   // --- The Breakfast Club
   console.log('🥞 Création des articles pour The Breakfast Club...');
@@ -1793,15 +1696,15 @@ async function main() {
       data: {
         name: 'Pancakes',
         price: 8.99,
-        desc: 'Empilement de pancakes moelleux servis avec du sirop d\'érable',
-        image: 'https://example.com/pancakes.jpg',
+        desc: "Empilement de pancakes moelleux servis avec du sirop d'érable",
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fpancakes.jpg?alt=media&token=TOKEN_PANCAKES',
         available: true,
         restaurant_id: restaurants[3].restaurant_id,
         categories: { connect: [{ category_id: bcCategories[0].category_id }] },
         ingredients: {
           create: [
             { name: 'Pancakes', removable: false },
-            { name: 'Sirop d\'érable', removable: false },
+            { name: "Sirop d'érable", removable: false },
             { name: 'Beurre', removable: true },
             { name: 'Fruits', removable: true }
           ]
@@ -1820,7 +1723,7 @@ async function main() {
         name: 'French Toast',
         price: 9.99,
         desc: 'Pain perdu doré avec cannelle',
-        image: 'https://example.com/frenchtoast.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Ffrench-toast.jpg?alt=media&token=TOKEN_FRENCHTOAST',
         available: true,
         restaurant_id: restaurants[3].restaurant_id,
         categories: { connect: [{ category_id: bcCategories[0].category_id }] },
@@ -1829,7 +1732,7 @@ async function main() {
             { name: 'Pain Brioché', removable: false },
             { name: 'Oeuf', removable: false },
             { name: 'Cannelle', removable: false },
-            { name: 'Sirop d\'érable', removable: true },
+            { name: "Sirop d'érable", removable: true },
             { name: 'Fruits', removable: true }
           ]
         },
@@ -1846,7 +1749,7 @@ async function main() {
         name: 'Omelette',
         price: 10.99,
         desc: 'Omelette moelleuse avec garniture au choix',
-        image: 'https://example.com/omelette.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fomelette.jpg?alt=media&token=TOKEN_OMELETTE',
         available: true,
         restaurant_id: restaurants[3].restaurant_id,
         categories: { connect: [{ category_id: bcCategories[0].category_id }] },
@@ -1872,8 +1775,8 @@ async function main() {
       data: {
         name: 'Avocado Toast',
         price: 9.99,
-        desc: 'Toast croustillant garni d\'avocat écrasé, citron et piment',
-        image: 'https://example.com/avocadotoast.jpg',
+        desc: "Toast croustillant garni d'avocat écrasé, citron et piment",
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Favocado-toast.avif?alt=media&token=5bae8a70-df80-4c6b-8fcc-6b27af2937ad',
         available: true,
         restaurant_id: restaurants[3].restaurant_id,
         categories: { connect: [{ category_id: bcCategories[0].category_id }] },
@@ -1900,7 +1803,7 @@ async function main() {
         name: 'Coffee Special',
         price: 4.50,
         desc: 'Café spécial avec options de personnalisation',
-        image: 'https://example.com/coffeespecial.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fcoffeespecial.jpg?alt=media&token=TOKEN_COFFEESPECIAL',
         available: true,
         restaurant_id: restaurants[3].restaurant_id,
         categories: { connect: [{ category_id: bcCategories[1].category_id }] },
@@ -1928,7 +1831,7 @@ async function main() {
         name: 'Iced Coffee',
         price: 4.99,
         desc: 'Café glacé rafraîchissant',
-        image: 'https://example.com/icedcoffee.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Ficed-coffee.jpg?alt=media&token=e96c809b-3887-4285-a7bf-4b4ce8e9632f',
         available: true,
         restaurant_id: restaurants[3].restaurant_id,
         categories: { connect: [{ category_id: bcCategories[1].category_id }] },
@@ -1955,14 +1858,14 @@ async function main() {
         name: 'Waffle',
         price: 7.99,
         desc: 'Gaufre belge croustillante',
-        image: 'https://example.com/waffle.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fwaffle.avif?alt=media&token=75c85235-b444-4566-a8d3-c5ef511d0dcc',
         available: true,
         restaurant_id: restaurants[3].restaurant_id,
         categories: { connect: [{ category_id: bcCategories[2].category_id }] },
         ingredients: {
           create: [
             { name: 'Gaufre', removable: false },
-            { name: 'Sirop d\'érable', removable: false },
+            { name: "Sirop d'érable", removable: false },
             { name: 'Chantilly', removable: true },
             { name: 'Fruits', removable: true }
           ]
@@ -1981,7 +1884,7 @@ async function main() {
         name: 'Croissant',
         price: 3.99,
         desc: 'Croissant frais et croustillant',
-        image: 'https://example.com/croissant.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fcroissant.jpg?alt=media&token=151072bb-f82e-48f0-a77f-00492a3e7b01',
         available: true,
         restaurant_id: restaurants[3].restaurant_id,
         categories: { connect: [{ category_id: bcCategories[2].category_id }] },
@@ -2000,14 +1903,11 @@ async function main() {
         name: 'Fresh Juice',
         price: 4.99,
         desc: 'Jus de fruits frais pressé',
-        image: 'https://example.com/freshjuice.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Ffresh-juice.jpg?alt=media&token=c465d2a7-2000-432d-b67b-f91fd6accb25',
         available: true,
         restaurant_id: restaurants[3].restaurant_id,
-        categories: {
-          connect: {
-            category_id: bcCategories[2].category_id  // Utilisation de l'index 2 pour la catégorie Desserts
-          }
-        },
+        // Ici la catégorie utilisée est BC (index 2) pour Desserts mais à adapter si ta catégorie Drinks existe séparément.
+        categories: { connect: [{ category_id: bcCategories[2].category_id }] },
         options: {
           create: [
             { name: 'Saveur', value: 'Orange', is_default: true },
@@ -2024,14 +1924,10 @@ async function main() {
         name: 'Smoothie',
         price: 5.99,
         desc: 'Smoothie crémeux aux fruits',
-        image: 'https://example.com/smoothie.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fsmoothie.avif?alt=media&token=7fd24e1f-074a-4d84-9bf3-0cd079710c20',
         available: true,
         restaurant_id: restaurants[3].restaurant_id,
-        categories: {
-          connect: {
-            category_id: bcCategories[2].category_id  // Utilisation de l'index 2 pour la catégorie Desserts
-          }
-        },
+        categories: { connect: [{ category_id: bcCategories[2].category_id }] },
         options: {
           create: [
             { name: 'Saveur', value: 'Fruits Rouges', is_default: true },
@@ -2055,14 +1951,10 @@ async function main() {
         name: 'Omelette',
         price: 9.99,
         desc: 'Omelette aux choix',
-        image: 'https://example.com/omelette.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fomelette.jpg?alt=media&token=64ab8438-78c6-4ce9-a4f4-c648898e7312',
         available: true,
         restaurant_id: restaurants[3].restaurant_id,
-        categories: {
-          connect: {
-            category_id: bcCategories[0].category_id
-          }
-        },
+        categories: { connect: [{ category_id: bcCategories[0].category_id }] },
         options: {
           create: [
             { name: 'Garniture', value: 'Fromage', is_default: true },
@@ -2077,31 +1969,22 @@ async function main() {
         name: 'Croissant',
         price: 3.99,
         desc: 'Croissant beurre',
-        image: 'https://example.com/croissant.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fcroissant.jpg?alt=media&token=151072bb-f82e-48f0-a77f-00492a3e7b01',
         available: true,
         restaurant_id: restaurants[3].restaurant_id,
-        categories: {
-          connect: {
-            category_id: bcCategories[0].category_id
-          }
-        }
+        categories: { connect: [{ category_id: bcCategories[0].category_id }] }
       }
     }),
-
     // Catégorie Brunch
     prisma.article.create({
       data: {
         name: 'Brunch Classique',
         price: 15.99,
         desc: 'Brunch complet',
-        image: 'https://example.com/brunchclassique.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fbrunch-classique.jpg?alt=media&token=9196845a-6fab-4973-bad1-b0091521b756',
         available: true,
         restaurant_id: restaurants[3].restaurant_id,
-        categories: {
-          connect: {
-            category_id: bcCategories[1].category_id
-          }
-        }
+        categories: { connect: [{ category_id: bcCategories[1].category_id }] }
       }
     }),
     prisma.article.create({
@@ -2109,31 +1992,22 @@ async function main() {
         name: 'Brunch Végétarien',
         price: 14.99,
         desc: 'Brunch végétarien',
-        image: 'https://example.com/brunchvegetarien.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fbrunch-vegetarien.jpg?alt=media&token=87743dd3-5081-4938-b737-223fbeb5f209',
         available: true,
         restaurant_id: restaurants[3].restaurant_id,
-        categories: {
-          connect: {
-            category_id: bcCategories[1].category_id
-          }
-        }
+        categories: { connect: [{ category_id: bcCategories[1].category_id }] }
       }
     }),
-
     // Catégorie Boissons
     prisma.article.create({
       data: {
         name: 'Smoothie',
         price: 5.99,
         desc: 'Smoothie aux fruits',
-        image: 'https://example.com/smoothie.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fsmoothie.avif?alt=media&token=7fd24e1f-074a-4d84-9bf3-0cd079710c20',
         available: true,
         restaurant_id: restaurants[3].restaurant_id,
-        categories: {
-          connect: {
-            category_id: bcCategories[2].category_id
-          }
-        },
+        categories: { connect: [{ category_id: bcCategories[2].category_id }] },
         options: {
           create: [
             { name: 'Parfum', value: 'Fruits rouges', is_default: true },
@@ -2143,7 +2017,7 @@ async function main() {
         }
       }
     })
-  ]);
+  ]);  
 
   // --- Spicy Chicken Express
   console.log('🍗 Création des articles pour Spicy Chicken Express...');
@@ -2154,7 +2028,7 @@ async function main() {
         name: 'Fried Chicken',
         price: 9.99,
         desc: 'Poulet frit croustillant',
-        image: 'https://example.com/friedchicken.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Ffried-chicken.jpg?alt=media&token=ef380f4a-8299-4434-bb5d-bff886c1a842',
         available: true,
         restaurant_id: restaurants[4].restaurant_id,
         categories: { connect: [{ category_id: sceCategories[0].category_id }] },
@@ -2179,7 +2053,7 @@ async function main() {
         name: 'Spicy Chicken Wings',
         price: 8.99,
         desc: 'Ailes de poulet épicées',
-        image: 'https://example.com/chickenwings.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fchicken-wings.jpg?alt=media&token=0aaecff2-bbea-4ba5-9a0a-6591a1baac86',
         available: true,
         restaurant_id: restaurants[4].restaurant_id,
         categories: { connect: [{ category_id: sceCategories[0].category_id }] },
@@ -2187,8 +2061,8 @@ async function main() {
           create: [
             { name: 'Quantité', value: '6 pièces', is_default: true },
             { name: 'Quantité', value: '12 pièces', is_default: false, extra_price: 5.00 },
-            { name: 'Niveau d\'épice', value: 'Moyen', is_default: true },
-            { name: 'Niveau d\'épice', value: 'Fort', is_default: false }
+            { name: "Niveau d'épice", value: 'Moyen', is_default: true },
+            { name: "Niveau d'épice", value: 'Fort', is_default: false }
           ]
         },
         supplements: {
@@ -2204,7 +2078,7 @@ async function main() {
         name: 'Chicken Burger',
         price: 7.99,
         desc: 'Burger au poulet croustillant',
-        image: 'https://example.com/chickenburger.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fchicken-burger.jpg?alt=media&token=ce71a1ab-7d22-46de-b3c3-ac0c35eac92d',
         available: true,
         restaurant_id: restaurants[4].restaurant_id,
         categories: { connect: [{ category_id: sceCategories[0].category_id }] },
@@ -2230,7 +2104,7 @@ async function main() {
         name: 'Chicken Tenders',
         price: 8.49,
         desc: 'Lanières de poulet tendres',
-        image: 'https://example.com/chickentenders.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fchicken-tenders.jpg?alt=media&token=1ae2f809-8f44-4fe3-8311-07de47ff84f6',
         available: true,
         restaurant_id: restaurants[4].restaurant_id,
         categories: { connect: [{ category_id: sceCategories[0].category_id }] },
@@ -2254,7 +2128,7 @@ async function main() {
         name: 'French Fries',
         price: 3.99,
         desc: 'Frites croustillantes',
-        image: 'https://example.com/fries.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Ffrench-fries.jpg?alt=media&token=d20579c0-0bcf-4c2f-b708-b86e30514d2a',
         available: true,
         restaurant_id: restaurants[4].restaurant_id,
         categories: { connect: [{ category_id: sceCategories[1].category_id }] },
@@ -2278,7 +2152,7 @@ async function main() {
         name: 'Coleslaw',
         price: 2.99,
         desc: 'Salade de chou crémeuse',
-        image: 'https://example.com/coleslaw.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fcoleslaw.jpg?alt=media&token=5728e043-93de-426c-9105-c3d11fa8dcea',
         available: true,
         restaurant_id: restaurants[4].restaurant_id,
         categories: { connect: [{ category_id: sceCategories[1].category_id }] },
@@ -2296,7 +2170,7 @@ async function main() {
         name: 'Soda',
         price: 2.99,
         desc: 'Boisson gazeuse rafraîchissante',
-        image: 'https://example.com/soda.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fsoda.jpg?alt=media&token=0bc9913d-06ca-4972-bfbe-f2cb658ff11c',
         available: true,
         restaurant_id: restaurants[4].restaurant_id,
         categories: { connect: [{ category_id: sceCategories[2].category_id }] },
@@ -2317,7 +2191,7 @@ async function main() {
         name: 'Iced Tea',
         price: 2.99,
         desc: 'Thé glacé rafraîchissant',
-        image: 'https://example.com/icedtea.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Ficedtea.jpg?alt=media&token=TOKEN_ICEDTEA',
         available: true,
         restaurant_id: restaurants[4].restaurant_id,
         categories: { connect: [{ category_id: sceCategories[2].category_id }] },
@@ -2337,14 +2211,10 @@ async function main() {
         name: 'Poulet BBQ',
         price: 12.99,
         desc: 'Poulet sauce barbecue',
-        image: 'https://example.com/pouletbbq.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fpoulet-bbq.avif?alt=media&token=c99e5908-6f5f-4243-bd9f-922a40043e46',
         available: true,
         restaurant_id: restaurants[4].restaurant_id,
-        categories: {
-          connect: {
-            category_id: sceCategories[0].category_id
-          }
-        },
+        categories: { connect: [{ category_id: sceCategories[0].category_id }] },
         options: {
           create: [
             { name: 'Niveau de piquant', value: 'Doux', is_default: true },
@@ -2359,31 +2229,22 @@ async function main() {
         name: 'Poulet Miel',
         price: 12.99,
         desc: 'Poulet sauce miel',
-        image: 'https://example.com/pouletmiel.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fpoulet-miel.jpg?alt=media&token=306af12c-17f2-4872-b912-31238b824cc1',
         available: true,
         restaurant_id: restaurants[4].restaurant_id,
-        categories: {
-          connect: {
-            category_id: sceCategories[0].category_id
-          }
-        }
+        categories: { connect: [{ category_id: sceCategories[0].category_id }] }
       }
     }),
-
     // Catégorie Accompagnements
     prisma.article.create({
       data: {
         name: 'Frites',
         price: 4.99,
         desc: 'Frites maison',
-        image: 'https://example.com/frites.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Ffrites.webp?alt=media&token=7c090870-61e7-4b6c-9f3b-c2190b65e82b',
         available: true,
         restaurant_id: restaurants[4].restaurant_id,
-        categories: {
-          connect: {
-            category_id: sceCategories[1].category_id
-          }
-        }
+        categories: { connect: [{ category_id: sceCategories[1].category_id }] }
       }
     }),
     prisma.article.create({
@@ -2391,34 +2252,25 @@ async function main() {
         name: 'Salade César',
         price: 6.99,
         desc: 'Salade césar avec poulet',
-        image: 'https://example.com/saladecesar.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fsalade-cesar.jpg?alt=media&token=7418c68c-7d0f-49dc-8f92-9365f8824770',
         available: true,
         restaurant_id: restaurants[4].restaurant_id,
-        categories: {
-          connect: {
-            category_id: sceCategories[1].category_id
-          }
-        }
+        categories: { connect: [{ category_id: sceCategories[1].category_id }] }
       }
     }),
-
     // Catégorie Desserts
     prisma.article.create({
       data: {
         name: 'Beignet',
         price: 4.99,
         desc: 'Beignet sucré',
-        image: 'https://example.com/beignet.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fbeignet.jpg?alt=media&token=2c851353-f890-4151-8b79-14e9560ed47b',
         available: true,
         restaurant_id: restaurants[4].restaurant_id,
-        categories: {
-          connect: {
-            category_id: sceCategories[3].category_id
-          }
-        }
+        categories: { connect: [{ category_id: sceCategories[3].category_id }] }
       }
     })
-  ]);
+  ]);  
 
   // --- Taj Mahal
   console.log('🍛 Création des articles pour Taj Mahal...');
@@ -2429,13 +2281,11 @@ async function main() {
         name: 'Butter Chicken',
         price: 14.99,
         desc: 'Poulet mariné dans une sauce crémeuse au beurre et aux épices',
-        image: 'https://example.com/butterchicken.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fbutter-chicken.webp?alt=media&token=7b62c90a-1a46-4561-9c0f-057836d64321',
         available: true,
         restaurant_id: additionalRestaurants[0].restaurant_id,
         categories: {
-          connect: {
-            category_id: tajCategories[0].category_id
-          }
+          connect: { category_id: tajCategories[0].category_id }
         },
         options: {
           create: [
@@ -2458,13 +2308,11 @@ async function main() {
         name: 'Lamb Rogan Josh',
         price: 16.99,
         desc: 'Ragoût d\'agneau aux épices du Cachemire',
-        image: 'https://example.com/roganjosh.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Flamb-rogan-josh.jpg?alt=media&token=db6b9599-ec1f-4dae-8597-6f3a58e417aa',
         available: true,
         restaurant_id: additionalRestaurants[0].restaurant_id,
         categories: {
-          connect: {
-            category_id: tajCategories[0].category_id
-          }
+          connect: { category_id: tajCategories[0].category_id }
         },
         options: {
           create: [
@@ -2486,13 +2334,11 @@ async function main() {
         name: 'Chicken Biryani',
         price: 15.99,
         desc: 'Riz parfumé au safran avec poulet et épices',
-        image: 'https://example.com/biryani.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fchicken-biryani.jpg?alt=media&token=4ced578e-5c44-47d5-baef-501bfc94829b',
         available: true,
         restaurant_id: additionalRestaurants[0].restaurant_id,
         categories: {
-          connect: {
-            category_id: tajCategories[1].category_id
-          }
+          connect: { category_id: tajCategories[1].category_id }
         },
         options: {
           create: [
@@ -2514,13 +2360,11 @@ async function main() {
         name: 'Tandoori Mixed Grill',
         price: 18.99,
         desc: 'Assortiment de viandes marinées et grillées au tandoor',
-        image: 'https://example.com/tandoori.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Ftandoori-mixed-grill.jpeg?alt=media&token=31e02e3a-c063-4d55-98d7-8cb041a7cfab',
         available: true,
         restaurant_id: additionalRestaurants[0].restaurant_id,
         categories: {
-          connect: {
-            category_id: tajCategories[2].category_id
-          }
+          connect: { category_id: tajCategories[2].category_id }
         },
         ingredients: {
           create: [
@@ -2544,13 +2388,11 @@ async function main() {
         name: 'Palak Paneer',
         price: 12.99,
         desc: 'Fromage indien dans une sauce aux épinards',
-        image: 'https://example.com/palakpaneer.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fpalak-paneer.webp?alt=media&token=c85c8a9b-8e1a-4d72-8cb2-ef66e995e6ee',
         available: true,
         restaurant_id: additionalRestaurants[0].restaurant_id,
         categories: {
-          connect: {
-            category_id: tajCategories[0].category_id
-          }
+          connect: { category_id: tajCategories[0].category_id }
         },
         options: {
           create: [
@@ -2574,13 +2416,11 @@ async function main() {
         name: 'Samosa',
         price: 5.99,
         desc: 'Beignets indiens aux légumes',
-        image: 'https://example.com/samosa.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fsamosa.jpg?alt=media&token=0314e3c8-e3b7-4fea-b5e0-7859d0322f83',
         available: true,
         restaurant_id: additionalRestaurants[0].restaurant_id,
         categories: {
-          connect: {
-            category_id: tajCategories[0].category_id
-          }
+          connect: { category_id: tajCategories[0].category_id }
         },
         options: {
           create: [
@@ -2596,30 +2436,26 @@ async function main() {
         name: 'Pakora',
         price: 6.99,
         desc: 'Beignets de légumes',
-        image: 'https://example.com/pakora.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fpakora.webp?alt=media&token=4249bd8f-729d-419e-b6c9-3c6f5a2b4cbb',
         available: true,
         restaurant_id: additionalRestaurants[0].restaurant_id,
         categories: {
-          connect: {
-            category_id: tajCategories[0].category_id
-          }
+          connect: { category_id: tajCategories[0].category_id }
         }
       }
     }),
-
+  
     // Catégorie Plats Principaux
     prisma.article.create({
       data: {
         name: 'Biryani de Poulet',
         price: 15.99,
         desc: 'Riz parfumé au poulet',
-        image: 'https://example.com/biryanipoulet.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fchicken-biryani.jpg?alt=media&token=4ced578e-5c44-47d5-baef-501bfc94829b',
         available: true,
         restaurant_id: additionalRestaurants[0].restaurant_id,
         categories: {
-          connect: {
-            category_id: tajCategories[1].category_id
-          }
+          connect: { category_id: tajCategories[1].category_id }
         },
         options: {
           create: [
@@ -2635,34 +2471,30 @@ async function main() {
         name: 'Rogan Josh',
         price: 16.99,
         desc: 'Curry d\'agneau',
-        image: 'https://example.com/roganjosh.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Flamb-rogan-josh.jpg?alt=media&token=db6b9599-ec1f-4dae-8597-6f3a58e417aa',
         available: true,
         restaurant_id: additionalRestaurants[0].restaurant_id,
         categories: {
-          connect: {
-            category_id: tajCategories[1].category_id
-          }
+          connect: { category_id: tajCategories[1].category_id }
         }
       }
     }),
-
+  
     // Catégorie Desserts
     prisma.article.create({
       data: {
         name: 'Gulab Jamun',
         price: 5.99,
         desc: 'Beignets au sirop',
-        image: 'https://example.com/gulabjamun.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fgulab-jamun.jpg?alt=media&token=97176775-ff60-4169-9905-4520dc880153',
         available: true,
         restaurant_id: additionalRestaurants[0].restaurant_id,
         categories: {
-          connect: {
-            category_id: tajCategories[3].category_id
-          }
+          connect: { category_id: tajCategories[3].category_id }
         }
       }
     })
-  ]);
+  ]);  
 
   // --- Ouzo
   console.log('🍽️ Création des articles pour Ouzo...');
@@ -2672,14 +2504,12 @@ async function main() {
       data: {
         name: 'Tzatziki',
         price: 5.99,
-        desc: 'Yaourt grec à l\'ail et au concombre',
-        image: 'https://example.com/tzatziki.jpg',
+        desc: "Yaourt grec à l'ail et au concombre",
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Ftsatziki.jpg?alt=media&token=b8516c65-12a1-4f90-8c39-9bef402a786d',
         available: true,
         restaurant_id: additionalRestaurants[2].restaurant_id,
         categories: {
-          connect: {
-            category_id: ouzoCategories[0].category_id
-          }
+          connect: { category_id: ouzoCategories[0].category_id }
         }
       }
     }),
@@ -2688,13 +2518,11 @@ async function main() {
         name: 'Tarama',
         price: 6.99,
         desc: 'Tarama maison',
-        image: 'https://example.com/tarama.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Ftarama.jpeg?alt=media&token=81699144-1308-4af0-87fb-7b9f10f33ca2',
         available: true,
         restaurant_id: additionalRestaurants[2].restaurant_id,
         categories: {
-          connect: {
-            category_id: ouzoCategories[0].category_id
-          }
+          connect: { category_id: ouzoCategories[0].category_id }
         }
       }
     }),
@@ -2703,13 +2531,11 @@ async function main() {
         name: 'Dolmas',
         price: 7.99,
         desc: 'Feuilles de vigne farcies',
-        image: 'https://example.com/dolmas.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fdolmas.jpg?alt=media&token=59ed429d-5758-4d52-8370-9539b282db45',
         available: true,
         restaurant_id: additionalRestaurants[2].restaurant_id,
         categories: {
-          connect: {
-            category_id: ouzoCategories[0].category_id
-          }
+          connect: { category_id: ouzoCategories[0].category_id }
         }
       }
     }),
@@ -2718,30 +2544,26 @@ async function main() {
         name: 'Feta au Miel',
         price: 8.99,
         desc: 'Feta grillée au miel et aux noix',
-        image: 'https://example.com/fetamiel.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Ffeta-miel.jpg?alt=media&token=db075468-2427-4173-a291-9586a47a8115',
         available: true,
         restaurant_id: additionalRestaurants[2].restaurant_id,
         categories: {
-          connect: {
-            category_id: ouzoCategories[0].category_id
-          }
+          connect: { category_id: ouzoCategories[0].category_id }
         }
       }
     }),
-
+  
     // Catégorie Entrées
     prisma.article.create({
       data: {
         name: 'Salade Grecque',
         price: 9.99,
         desc: 'Salade traditionnelle grecque',
-        image: 'https://example.com/saladegrecque.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fsalade-grecque.avif?alt=media&token=3c932616-3e07-4329-9837-f4e4dd4fa641',
         available: true,
         restaurant_id: additionalRestaurants[2].restaurant_id,
         categories: {
-          connect: {
-            category_id: ouzoCategories[1].category_id
-          }
+          connect: { category_id: ouzoCategories[1].category_id }
         }
       }
     }),
@@ -2750,13 +2572,11 @@ async function main() {
         name: 'Saganaki',
         price: 10.99,
         desc: 'Fromage frit flambé',
-        image: 'https://example.com/saganaki.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fsaganaki.jpg?alt=media&token=4ce4ff77-0d66-4273-8c0a-89ee9725d084',
         available: true,
         restaurant_id: additionalRestaurants[2].restaurant_id,
         categories: {
-          connect: {
-            category_id: ouzoCategories[1].category_id
-          }
+          connect: { category_id: ouzoCategories[1].category_id }
         }
       }
     }),
@@ -2765,30 +2585,26 @@ async function main() {
         name: 'Calamars Frits',
         price: 12.99,
         desc: 'Calamars frits avec sauce tzatziki',
-        image: 'https://example.com/calamars.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fcalamar-frit.webp?alt=media&token=51a67f58-60b0-46b1-b8ff-7cb4ae3c827f',
         available: true,
         restaurant_id: additionalRestaurants[2].restaurant_id,
         categories: {
-          connect: {
-            category_id: ouzoCategories[1].category_id
-          }
+          connect: { category_id: ouzoCategories[1].category_id }
         }
       }
     }),
-
+  
     // Catégorie Plats Principaux
     prisma.article.create({
       data: {
         name: 'Moussaka',
         price: 15.99,
         desc: 'Moussaka traditionnelle',
-        image: 'https://example.com/moussaka.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fmoussaka.jpg?alt=media&token=ed92926c-e2dc-4a1b-9af0-74d0dbd457a4',
         available: true,
         restaurant_id: additionalRestaurants[2].restaurant_id,
         categories: {
-          connect: {
-            category_id: ouzoCategories[2].category_id
-          }
+          connect: { category_id: ouzoCategories[2].category_id }
         }
       }
     }),
@@ -2797,13 +2613,11 @@ async function main() {
         name: 'Souvlaki',
         price: 14.99,
         desc: 'Brochettes de viande grillée',
-        image: 'https://example.com/souvlaki.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fsouvlaki.jpg?alt=media&token=af80cda2-65c4-4862-9b46-32d3274dca0a',
         available: true,
         restaurant_id: additionalRestaurants[2].restaurant_id,
         categories: {
-          connect: {
-            category_id: ouzoCategories[2].category_id
-          }
+          connect: { category_id: ouzoCategories[2].category_id }
         },
         options: {
           create: [
@@ -2819,13 +2633,11 @@ async function main() {
         name: 'Pastitsio',
         price: 15.99,
         desc: 'Pâtes à la viande',
-        image: 'https://example.com/pastitsio.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fpastitsio.jpg?alt=media&token=93b6fdc4-75f7-4830-a39c-3ca00e2be2cc',
         available: true,
         restaurant_id: additionalRestaurants[2].restaurant_id,
         categories: {
-          connect: {
-            category_id: ouzoCategories[2].category_id
-          }
+          connect: { category_id: ouzoCategories[2].category_id }
         }
       }
     }),
@@ -2834,30 +2646,26 @@ async function main() {
         name: 'Stifado',
         price: 16.99,
         desc: 'Ragoût de boeuf',
-        image: 'https://example.com/stifado.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fstifado.jpg?alt=media&token=6915ce19-d44d-47ff-bfa4-e429f2403fea',
         available: true,
         restaurant_id: additionalRestaurants[2].restaurant_id,
         categories: {
-          connect: {
-            category_id: ouzoCategories[2].category_id
-          }
+          connect: { category_id: ouzoCategories[2].category_id }
         }
       }
     }),
-
+  
     // Catégorie Desserts
     prisma.article.create({
       data: {
         name: 'Baklava',
         price: 6.99,
         desc: 'Pâtisserie aux noix et sirop',
-        image: 'https://example.com/baklava.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fbaklava.avif?alt=media&token=9692905b-1eb2-42a8-8049-a7a619db099f',
         available: true,
         restaurant_id: additionalRestaurants[2].restaurant_id,
         categories: {
-          connect: {
-            category_id: ouzoCategories[3].category_id
-          }
+          connect: { category_id: ouzoCategories[3].category_id }
         }
       }
     }),
@@ -2866,13 +2674,11 @@ async function main() {
         name: 'Loukoumades',
         price: 7.99,
         desc: 'Beignets grecs',
-        image: 'https://example.com/loukoumades.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Floukoumades.jpg?alt=media&token=d66ad4a0-d01b-4812-8986-52f7c9cefd82',
         available: true,
         restaurant_id: additionalRestaurants[2].restaurant_id,
         categories: {
-          connect: {
-            category_id: ouzoCategories[3].category_id
-          }
+          connect: { category_id: ouzoCategories[3].category_id }
         }
       }
     }),
@@ -2881,57 +2687,11 @@ async function main() {
         name: 'Galaktoboureko',
         price: 6.99,
         desc: 'Gâteau à la crème pâtissière',
-        image: 'https://example.com/galaktoboureko.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fgalaktoboureko.jpg?alt=media&token=07fd7e92-327b-416b-a889-b414cae01780',
         available: true,
         restaurant_id: additionalRestaurants[2].restaurant_id,
         categories: {
-          connect: {
-            category_id: ouzoCategories[3].category_id
-          }
-        }
-      }
-    }),
-
-    // Catégorie Boissons
-    prisma.article.create({
-      data: {
-        name: 'Ouzo',
-        price: 4.99,
-        desc: 'Apéritif grec traditionnel',
-        image: 'https://example.com/ouzo.jpg',
-        available: true,
-        restaurant_id: additionalRestaurants[2].restaurant_id,
-        categories: {
-          connect: {
-            category_id: ouzoCategories[4].category_id
-          }
-        },
-        options: {
-          create: [
-            { name: 'Taille', value: '2cl', is_default: true },
-            { name: 'Taille', value: '4cl', is_default: false, extra_price: 2.00 }
-          ]
-        }
-      }
-    }),
-    prisma.article.create({
-      data: {
-        name: 'Retsina',
-        price: 5.99,
-        desc: 'Vin blanc grec résiné',
-        image: 'https://example.com/retsina.jpg',
-        available: true,
-        restaurant_id: additionalRestaurants[2].restaurant_id,
-        categories: {
-          connect: {
-            category_id: ouzoCategories[4].category_id
-          }
-        },
-        options: {
-          create: [
-            { name: 'Taille', value: 'Verre', is_default: true },
-            { name: 'Taille', value: 'Bouteille', is_default: false, extra_price: 15.00 }
-          ]
+          connect: { category_id: ouzoCategories[3].category_id }
         }
       }
     })
@@ -2946,13 +2706,12 @@ async function main() {
         name: 'Kebab Classique',
         price: 8.99,
         desc: 'Sandwich kebab traditionnel',
-        image: 'https://example.com/kebabclassique.jpg',
+        image:
+          'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fkebab-classique.png?alt=media&token=c059468d-9b8b-438f-9ec9-d96e7e91ffea',
         available: true,
         restaurant_id: additionalRestaurants[3].restaurant_id,
         categories: {
-          connect: {
-            category_id: sultanCategories[0].category_id
-          }
+          connect: { category_id: sultanCategories[0].category_id }
         },
         options: {
           create: [
@@ -2973,16 +2732,15 @@ async function main() {
     // Catégorie Assiettes
     prisma.article.create({
       data: {
-        name: 'Assiette Kebab',
+        name: 'Assiette',
         price: 12.99,
         desc: 'Assiette de viande avec accompagnements',
-        image: 'https://example.com/assiettekebab.jpg',
+        image:
+          'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fassiette-mixte.jpg?alt=media&token=a0dd28a1-6f55-4eae-9553-c12045a845cc',
         available: true,
         restaurant_id: additionalRestaurants[3].restaurant_id,
         categories: {
-          connect: {
-            category_id: sultanCategories[1].category_id
-          }
+          connect: { category_id: sultanCategories[1].category_id }
         },
         options: {
           create: [
@@ -3005,13 +2763,12 @@ async function main() {
         name: 'Coca-Cola',
         price: 2.50,
         desc: 'Canette 33cl',
-        image: 'https://example.com/cocacola.jpg',
+        image:
+          'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fcoke.jpg?alt=media&token=6cffe88e-db0e-4f6d-8813-04043a11717b',
         available: true,
         restaurant_id: additionalRestaurants[3].restaurant_id,
         categories: {
-          connect: {
-            category_id: sultanCategories[2].category_id  // Utilisation de l'index 2 pour la catégorie Boissons
-          }
+          connect: { category_id: sultanCategories[2].category_id }
         },
         options: {
           create: [
@@ -3021,19 +2778,18 @@ async function main() {
         }
       }
     }),
-    // Catégorie Kebabs
+    // Suite – Catégorie Kebabs
     prisma.article.create({
       data: {
         name: 'Kebab Mixte',
         price: 12.99,
         desc: 'Kebab mixte viande et poulet',
-        image: 'https://example.com/kebabmixte.jpg',
+        image:
+          'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fkebab-mixte.avif?alt=media&token=b321c4c3-1d97-4b7d-9e8b-ddf8be7975ae',
         available: true,
         restaurant_id: additionalRestaurants[3].restaurant_id,
         categories: {
-          connect: {
-            category_id: sultanCategories[0].category_id
-          }
+          connect: { category_id: sultanCategories[0].category_id }
         },
         options: {
           create: [
@@ -3049,13 +2805,12 @@ async function main() {
         name: 'Kebab de Poulet',
         price: 11.99,
         desc: 'Kebab de poulet mariné',
-        image: 'https://example.com/kebabpoulet.jpg',
+        image:
+          'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fchicken-burger.jpg?alt=media&token=ce71a1ab-7d22-46de-b3c3-ac0c35eac92d',
         available: true,
         restaurant_id: additionalRestaurants[3].restaurant_id,
         categories: {
-          connect: {
-            category_id: sultanCategories[0].category_id
-          }
+          connect: { category_id: sultanCategories[0].category_id }
         },
         options: {
           create: [
@@ -3066,20 +2821,19 @@ async function main() {
         }
       }
     }),
-
-    // Catégorie Assiettes
+  
+    // Catégorie Assiettes supplémentaires
     prisma.article.create({
       data: {
         name: 'Assiette Mixte',
         price: 15.99,
         desc: 'Assiette mixte viande et poulet',
-        image: 'https://example.com/assiettemixte.jpg',
+        image:
+          'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fassiette-mixte.jpg?alt=media&token=a0dd28a1-6f55-4eae-9553-c12045a845cc',
         available: true,
         restaurant_id: additionalRestaurants[3].restaurant_id,
         categories: {
-          connect: {
-            category_id: sultanCategories[1].category_id
-          }
+          connect: { category_id: sultanCategories[1].category_id }
         }
       }
     }),
@@ -3088,30 +2842,28 @@ async function main() {
         name: 'Assiette de Poulet',
         price: 14.99,
         desc: 'Assiette de poulet mariné',
-        image: 'https://example.com/assiettepoulet.jpg',
+        image:
+          'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fassiette-mixte.jpg?alt=media&token=a0dd28a1-6f55-4eae-9553-c12045a845cc',
         available: true,
         restaurant_id: additionalRestaurants[3].restaurant_id,
         categories: {
-          connect: {
-            category_id: sultanCategories[1].category_id
-          }
+          connect: { category_id: sultanCategories[1].category_id }
         }
       }
     }),
-
-    // Catégorie Boissons
+  
+    // Catégorie Boissons supplémentaires
     prisma.article.create({
       data: {
         name: 'Thé à la Menthe',
         price: 3.99,
         desc: 'Thé à la menthe traditionnel',
-        image: 'https://example.com/thementhe.jpg',
+        image:
+          'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fthe-menthe.jpg?alt=media&token=043aaee8-5a12-40eb-bc6c-0b24090deb2e',
         available: true,
         restaurant_id: additionalRestaurants[3].restaurant_id,
         categories: {
-          connect: {
-            category_id: sultanCategories[2].category_id
-          }
+          connect: { category_id: sultanCategories[2].category_id }
         },
         options: {
           create: [
@@ -3132,13 +2884,11 @@ async function main() {
         name: 'Kimchi',
         price: 4.99,
         desc: 'Chou fermenté épicé',
-        image: 'https://example.com/kimchi.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fkimchi.webp?alt=media&token=d74f728a-dcc9-4ab7-86c6-5f19fdb48fd3',
         available: true,
         restaurant_id: additionalRestaurants[4].restaurant_id,
         categories: {
-          connect: {
-            category_id: seoulCategories[0].category_id
-          }
+          connect: { category_id: seoulCategories[0].category_id }
         },
         options: {
           create: [
@@ -3154,13 +2904,11 @@ async function main() {
         name: 'Bibimbap',
         price: 13.99,
         desc: 'Riz mélangé avec légumes et viande',
-        image: 'https://example.com/bibimbap.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fbibimbap.jpg?alt=media&token=ea34cd45-8b25-477d-a706-cf115082b324',
         available: true,
         restaurant_id: additionalRestaurants[4].restaurant_id,
         categories: {
-          connect: {
-            category_id: seoulCategories[1].category_id
-          }
+          connect: { category_id: seoulCategories[1].category_id }
         },
         options: {
           create: [
@@ -3182,13 +2930,11 @@ async function main() {
         name: 'Bulgogi',
         price: 15.99,
         desc: 'Boeuf mariné grillé',
-        image: 'https://example.com/bulgogi.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fbulgogi.jpg?alt=media&token=541f6b3c-8fab-4c85-8c69-87be9efd09b7',
         available: true,
         restaurant_id: additionalRestaurants[4].restaurant_id,
         categories: {
-          connect: {
-            category_id: seoulCategories[1].category_id
-          }
+          connect: { category_id: seoulCategories[1].category_id }
         },
         options: {
           create: [
@@ -3211,13 +2957,11 @@ async function main() {
         name: 'Kimchi Jjigae',
         price: 11.99,
         desc: 'Soupe épicée au kimchi',
-        image: 'https://example.com/kimchijjigae.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fkimchi-jjigae.webp?alt=media&token=4335fcbe-4be0-409b-bc85-40577b98e6ab',
         available: true,
         restaurant_id: additionalRestaurants[4].restaurant_id,
         categories: {
-          connect: {
-            category_id: seoulCategories[2].category_id
-          }
+          connect: { category_id: seoulCategories[2].category_id }
         },
         options: {
           create: [
@@ -3240,13 +2984,11 @@ async function main() {
         name: 'Bingsu',
         price: 6.99,
         desc: 'Dessert coréen à base de glace pilée',
-        image: 'https://example.com/bingsu.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fbingsu.webp?alt=media&token=96ccbfb2-69d7-462e-8a37-bc3963a3d1a7',
         available: true,
         restaurant_id: additionalRestaurants[4].restaurant_id,
         categories: {
-          connect: {
-            category_id: seoulCategories[3].category_id
-          }
+          connect: { category_id: seoulCategories[3].category_id }
         },
         options: {
           create: [
@@ -3269,13 +3011,11 @@ async function main() {
         name: 'Soju',
         price: 5.99,
         desc: 'Alcool coréen traditionnel',
-        image: 'https://example.com/soju.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fsoju.png?alt=media&token=f58078cc-36a1-44db-b311-f29c07aa0bb3',
         available: true,
         restaurant_id: additionalRestaurants[4].restaurant_id,
         categories: {
-          connect: {
-            category_id: seoulCategories[4].category_id
-          }
+          connect: { category_id: seoulCategories[4].category_id }
         },
         options: {
           create: [
@@ -3285,19 +3025,17 @@ async function main() {
         }
       }
     }),
-    // Catégorie Entrées
+    // Catégorie Entrées supplémentaires
     prisma.article.create({
       data: {
         name: 'Mandu',
         price: 7.99,
         desc: 'Raviolis coréens',
-        image: 'https://example.com/mandu.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fmandu.jpg?alt=media&token=a935937d-ae34-470f-a1bf-4d215fdd44f2',
         available: true,
         restaurant_id: additionalRestaurants[4].restaurant_id,
         categories: {
-          connect: {
-            category_id: seoulCategories[0].category_id
-          }
+          connect: { category_id: seoulCategories[0].category_id }
         },
         options: {
           create: [
@@ -3313,30 +3051,26 @@ async function main() {
         name: 'Hotteok',
         price: 5.99,
         desc: 'Crêpes coréennes sucrées',
-        image: 'https://example.com/hotteok.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fhotteok.jpg?alt=media&token=7fcda504-033e-4104-9947-023660717b4a',
         available: true,
         restaurant_id: additionalRestaurants[4].restaurant_id,
         categories: {
-          connect: {
-            category_id: seoulCategories[0].category_id
-          }
+          connect: { category_id: seoulCategories[0].category_id }
         }
       }
     }),
-
-    // Catégorie Plats Principaux
+  
+    // Catégorie Plats Principaux supplémentaires
     prisma.article.create({
       data: {
         name: 'Japchae',
         price: 14.99,
         desc: 'Nouilles de patate douce sautées',
-        image: 'https://example.com/japchae.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fjapchae.jpg?alt=media&token=24025e2b-aac2-4279-b2b3-161625c27aca',
         available: true,
         restaurant_id: additionalRestaurants[4].restaurant_id,
         categories: {
-          connect: {
-            category_id: seoulCategories[1].category_id
-          }
+          connect: { category_id: seoulCategories[1].category_id }
         }
       }
     }),
@@ -3345,13 +3079,11 @@ async function main() {
         name: 'Dakgalbi',
         price: 16.99,
         desc: 'Poulet mariné aux légumes',
-        image: 'https://example.com/dakgalbi.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fdagkalbi.webp?alt=media&token=2b8615de-88bb-4ebc-9d0a-669310a63323',
         available: true,
         restaurant_id: additionalRestaurants[4].restaurant_id,
         categories: {
-          connect: {
-            category_id: seoulCategories[1].category_id
-          }
+          connect: { category_id: seoulCategories[1].category_id }
         },
         options: {
           create: [
@@ -3362,31 +3094,55 @@ async function main() {
         }
       }
     }),
-
-    // Catégorie Desserts
+  
+    // Catégorie Desserts supplémentaires
     prisma.article.create({
       data: {
         name: 'Bingsu',
-        price: 8.99,
-        desc: 'Glace pilée coréenne',
-        image: 'https://example.com/bingsu.jpg',
+        price: 6.99,
+        desc: 'Dessert coréen à base de glace pilée',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fbingsu.webp?alt=media&token=96ccbfb2-69d7-462e-8a37-bc3963a3d1a7',
         available: true,
         restaurant_id: additionalRestaurants[4].restaurant_id,
         categories: {
-          connect: {
-            category_id: seoulCategories[3].category_id
-          }
+          connect: { category_id: seoulCategories[3].category_id }
         },
         options: {
           create: [
-            { name: 'Parfum', value: 'Thé vert', is_default: true },
+            { name: 'Parfum', value: 'Fruits Rouges', is_default: true },
             { name: 'Parfum', value: 'Mangue', is_default: false },
-            { name: 'Parfum', value: 'Fraise', is_default: false }
+            { name: 'Parfum', value: 'Matcha', is_default: false }
+          ]
+        },
+        supplements: {
+          create: [
+            { name: 'Extra Fruits', is_optional: true, extra_price: 1.50 },
+            { name: 'Crème Chantilly', is_optional: true, extra_price: 1.00 }
+          ]
+        }
+      }
+    }),
+    // Catégorie Boissons supplémentaires
+    prisma.article.create({
+      data: {
+        name: 'Soju',
+        price: 5.99,
+        desc: 'Alcool coréen traditionnel',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fsoju.png?alt=media&token=f58078cc-36a1-44db-b311-f29c07aa0bb3',
+        available: true,
+        restaurant_id: additionalRestaurants[4].restaurant_id,
+        categories: {
+          connect: { category_id: seoulCategories[4].category_id }
+        },
+        options: {
+          create: [
+            { name: 'Taille', value: '200ml', is_default: true },
+            { name: 'Taille', value: '360ml', is_default: false, extra_price: 2.00 }
           ]
         }
       }
     })
-  ]);
+  ]);  
 
   // --- Dragon d'Or
   console.log('🥢 Création des catégories pour Dragon d\'Or...');
@@ -3425,13 +3181,11 @@ async function main() {
         name: 'Raviolis Vapeur',
         price: 6.99,
         desc: 'Raviolis chinois traditionnels à la vapeur',
-        image: 'https://example.com/raviolis.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fraviolis_vapeur.jpg?alt=media&token=<TON_TOKEN_RAVIOLIS>',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[0].category_id
-          }
+          connect: { category_id: dragonCategories[0].category_id }
         },
         options: {
           create: [
@@ -3447,13 +3201,11 @@ async function main() {
         name: 'Nems',
         price: 5.99,
         desc: 'Nems croustillants maison',
-        image: 'https://example.com/nems.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fnems.jpg?alt=media&token=5f38a30d-f728-454f-9bfb-09831e21b6c2',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[0].category_id
-          }
+          connect: { category_id: dragonCategories[0].category_id }
         },
         options: {
           create: [
@@ -3468,30 +3220,26 @@ async function main() {
         name: 'Beignets de Crevettes',
         price: 7.99,
         desc: 'Beignets de crevettes croustillants',
-        image: 'https://example.com/beignets.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fbeignets-de-crevettes.jpg?alt=media&token=0b8c2ace-dfaf-4f75-8a84-52fe85ab6599',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[0].category_id
-          }
+          connect: { category_id: dragonCategories[0].category_id }
         }
       }
     }),
-
+  
     // Catégorie Plats Principaux
     prisma.article.create({
       data: {
         name: 'Canard Laqué',
         price: 18.99,
         desc: 'Canard laqué traditionnel avec sa sauce',
-        image: 'https://example.com/canard.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fcanard-laque.jpg?alt=media&token=ee76955a-b72b-4cde-8390-b836a9e3b26e',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[1].category_id
-          }
+          connect: { category_id: dragonCategories[1].category_id }
         },
         options: {
           create: [
@@ -3506,13 +3254,11 @@ async function main() {
         name: 'Boeuf aux Oignons',
         price: 15.99,
         desc: 'Boeuf sauté aux oignons et sauce soja',
-        image: 'https://example.com/boeuf.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fboeuf-oignons.jpg?alt=media&token=26f5593b-e6b2-4577-ba66-57c7a170e2f6',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[1].category_id
-          }
+          connect: { category_id: dragonCategories[1].category_id }
         },
         options: {
           create: [
@@ -3528,13 +3274,11 @@ async function main() {
         name: 'Poulet au Curry',
         price: 14.99,
         desc: 'Poulet sauté au curry et légumes',
-        image: 'https://example.com/pouletcurry.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fpoulet-au-curry.jpeg?alt=media&token=d0bd2665-92fb-487d-83aa-5b60d1213bb6',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[1].category_id
-          }
+          connect: { category_id: dragonCategories[1].category_id }
         },
         options: {
           create: [
@@ -3550,30 +3294,26 @@ async function main() {
         name: 'Porc au Caramel',
         price: 15.99,
         desc: 'Porc caramélisé aux cinq épices',
-        image: 'https://example.com/porccaramel.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fporc-caramel.jpg?alt=media&token=aaadc2c7-5411-4b87-891d-4f94177f0605',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[1].category_id
-          }
+          connect: { category_id: dragonCategories[1].category_id }
         }
       }
     }),
-
+  
     // Catégorie Soupes
     prisma.article.create({
       data: {
         name: 'Soupe de Nouilles',
         price: 9.99,
         desc: 'Soupe traditionnelle aux nouilles et légumes',
-        image: 'https://example.com/soupenouilles.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fsoupenouilles.jpg?alt=media&token=2cd94ff2-45ad-4b7a-9471-09119b220403',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[2].category_id
-          }
+          connect: { category_id: dragonCategories[2].category_id }
         },
         options: {
           create: [
@@ -3589,30 +3329,26 @@ async function main() {
         name: 'Soupe Wonton',
         price: 8.99,
         desc: 'Soupe aux raviolis chinois',
-        image: 'https://example.com/soupewonton.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fsoupe-wonton.jpg?alt=media&token=ec907544-c8fc-4a49-a676-f3f5facbad92',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[2].category_id
-          }
+          connect: { category_id: dragonCategories[2].category_id }
         }
       }
     }),
-
+  
     // Catégorie Desserts
     prisma.article.create({
       data: {
         name: 'Beignets à la Banane',
         price: 6.99,
         desc: 'Beignets de banane croustillants',
-        image: 'https://example.com/beignetsbanane.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fbeignets-banane.webp?alt=media&token=fbad6591-ca62-451e-a77f-e34c4f8aa2ec',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[3].category_id
-          }
+          connect: { category_id: dragonCategories[3].category_id }
         },
         options: {
           create: [
@@ -3622,19 +3358,17 @@ async function main() {
         }
       }
     }),
-    // Catégorie Entrées
+    // Catégorie Entrées supplémentaires
     prisma.article.create({
       data: {
         name: 'Rouleaux de Printemps',
         price: 6.99,
         desc: 'Rouleaux de printemps frais aux légumes',
-        image: 'https://example.com/rouleauxprintemps.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Frouleaux_de_printemps.jpg?alt=media&token=811b52e2-b218-472f-943c-1a8a8f91f0c6',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[0].category_id
-          }
+          connect: { category_id: dragonCategories[0].category_id }
         },
         options: {
           create: [
@@ -3650,13 +3384,11 @@ async function main() {
         name: 'Samoussas',
         price: 5.99,
         desc: 'Samoussas croustillants',
-        image: 'https://example.com/samoussas.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fsamoussas.jpg?alt=media&token=0314e3c8-e3b7-4fea-b5e0-7859d0322f83',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[0].category_id
-          }
+          connect: { category_id: dragonCategories[0].category_id }
         },
         options: {
           create: [
@@ -3667,20 +3399,18 @@ async function main() {
         }
       }
     }),
-
-    // Catégorie Plats Principaux
+  
+    // Catégorie Plats Principaux supplémentaires
     prisma.article.create({
       data: {
         name: 'Poulet aux Noix de Cajou',
         price: 15.99,
         desc: 'Poulet sauté aux noix de cajou et légumes',
-        image: 'https://example.com/pouletcajou.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fpoulet-aux-noix-de-cajou.jpg?alt=media&token=455eb533-51cb-4917-af39-a21714c855d8',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[1].category_id
-          }
+          connect: { category_id: dragonCategories[1].category_id }
         },
         options: {
           create: [
@@ -3696,30 +3426,26 @@ async function main() {
         name: 'Crevettes à l\'Ail',
         price: 16.99,
         desc: 'Crevettes sautées à l\'ail et au gingembre',
-        image: 'https://example.com/crevettesail.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fcrevettes-ail.webp?alt=media&token=2e119602-7179-4e8e-807e-510dc0757ed6',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[1].category_id
-          }
+          connect: { category_id: dragonCategories[1].category_id }
         }
       }
     }),
-
-    // Catégorie Desserts
+  
+    // Catégorie Desserts supplémentaires
     prisma.article.create({
       data: {
         name: 'Glace au Thé Vert',
         price: 5.99,
         desc: 'Glace au thé vert matcha',
-        image: 'https://example.com/glacethevert.jpg',
+        image: 'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fglace-matcha.webp?alt=media&token=efaa776a-c44e-44c1-8f05-cd57dcb70fcc',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[3].category_id
-          }
+          connect: { category_id: dragonCategories[3].category_id }
         },
         options: {
           create: [
@@ -4183,13 +3909,12 @@ async function main() {
         name: 'Raviolis Vapeur',
         price: 6.99,
         desc: 'Raviolis chinois traditionnels à la vapeur',
-        image: 'https://example.com/raviolis.jpg',
+        image:
+          'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fraviolis-vapeur.jpg?alt=media&token=86b95525-a876-4680-ad8f-c593ffdbb066',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[0].category_id
-          }
+          connect: { category_id: dragonCategories[0].category_id }
         },
         options: {
           create: [
@@ -4205,13 +3930,12 @@ async function main() {
         name: 'Nems',
         price: 5.99,
         desc: 'Nems croustillants maison',
-        image: 'https://example.com/nems.jpg',
+        image:
+          'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fnems.jpg?alt=media&token=5f38a30d-f728-454f-9bfb-09831e21b6c2',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[0].category_id
-          }
+          connect: { category_id: dragonCategories[0].category_id }
         },
         options: {
           create: [
@@ -4226,30 +3950,28 @@ async function main() {
         name: 'Beignets de Crevettes',
         price: 7.99,
         desc: 'Beignets de crevettes croustillants',
-        image: 'https://example.com/beignets.jpg',
+        image:
+          'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fbeignets-de-crevettes.jpg?alt=media&token=0b8c2ace-dfaf-4f75-8a84-52fe85ab6599',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[0].category_id
-          }
+          connect: { category_id: dragonCategories[0].category_id }
         }
       }
     }),
-
+  
     // Catégorie Plats Principaux
     prisma.article.create({
       data: {
         name: 'Canard Laqué',
         price: 18.99,
         desc: 'Canard laqué traditionnel avec sa sauce',
-        image: 'https://example.com/canard.jpg',
+        image:
+          'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fcanard-laque.jpg?alt=media&token=ee76955a-b72b-4cde-8390-b836a9e3b26e',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[1].category_id
-          }
+          connect: { category_id: dragonCategories[1].category_id }
         },
         options: {
           create: [
@@ -4264,13 +3986,12 @@ async function main() {
         name: 'Boeuf aux Oignons',
         price: 15.99,
         desc: 'Boeuf sauté aux oignons et sauce soja',
-        image: 'https://example.com/boeuf.jpg',
+        image:
+          'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fboeuf-oignons.jpg?alt=media&token=26f5593b-e6b2-4577-ba66-57c7a170e2f6',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[1].category_id
-          }
+          connect: { category_id: dragonCategories[1].category_id }
         },
         options: {
           create: [
@@ -4286,13 +4007,12 @@ async function main() {
         name: 'Poulet au Curry',
         price: 14.99,
         desc: 'Poulet sauté au curry et légumes',
-        image: 'https://example.com/pouletcurry.jpg',
+        image:
+          'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fpoulet-au-curry.jpeg?alt=media&token=d0bd2665-92fb-487d-83aa-5b60d1213bb6',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[1].category_id
-          }
+          connect: { category_id: dragonCategories[1].category_id }
         },
         options: {
           create: [
@@ -4308,30 +4028,28 @@ async function main() {
         name: 'Porc au Caramel',
         price: 15.99,
         desc: 'Porc caramélisé aux cinq épices',
-        image: 'https://example.com/porccaramel.jpg',
+        image:
+          'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fporc-caramel.jpg?alt=media&token=aaadc2c7-5411-4b87-891d-4f94177f0605',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[1].category_id
-          }
+          connect: { category_id: dragonCategories[1].category_id }
         }
       }
     }),
-
+  
     // Catégorie Soupes
     prisma.article.create({
       data: {
         name: 'Soupe de Nouilles',
         price: 9.99,
         desc: 'Soupe traditionnelle aux nouilles et légumes',
-        image: 'https://example.com/soupenouilles.jpg',
+        image:
+          'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fsoupe-chinoise.jpg?alt=media&token=75737825-6c07-49ce-9666-0979e445808f',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[2].category_id
-          }
+          connect: { category_id: dragonCategories[2].category_id }
         },
         options: {
           create: [
@@ -4347,30 +4065,28 @@ async function main() {
         name: 'Soupe Wonton',
         price: 8.99,
         desc: 'Soupe aux raviolis chinois',
-        image: 'https://example.com/soupewonton.jpg',
+        image:
+          'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fsoupe-wonton.jpg?alt=media&token=ec907544-c8fc-4a49-a676-f3f5facbad92',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[2].category_id
-          }
+          connect: { category_id: dragonCategories[2].category_id }
         }
       }
     }),
-
+  
     // Catégorie Desserts
     prisma.article.create({
       data: {
         name: 'Beignets à la Banane',
         price: 6.99,
         desc: 'Beignets de banane croustillants',
-        image: 'https://example.com/beignetsbanane.jpg',
+        image:
+          'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fbeignets-banane.webp?alt=media&token=fbad6591-ca62-451e-a77f-e34c4f8aa2ec',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[3].category_id
-          }
+          connect: { category_id: dragonCategories[3].category_id }
         },
         options: {
           create: [
@@ -4380,19 +4096,18 @@ async function main() {
         }
       }
     }),
-    // Catégorie Entrées
+    // Catégorie Entrées supplémentaires
     prisma.article.create({
       data: {
         name: 'Rouleaux de Printemps',
         price: 6.99,
         desc: 'Rouleaux de printemps frais aux légumes',
-        image: 'https://example.com/rouleauxprintemps.jpg',
+        image:
+          'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Frouleaux_de_printemps.jpg?alt=media&token=811b52e2-b218-472f-943c-1a8a8f91f0c6',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[0].category_id
-          }
+          connect: { category_id: dragonCategories[0].category_id }
         },
         options: {
           create: [
@@ -4408,13 +4123,12 @@ async function main() {
         name: 'Samoussas',
         price: 5.99,
         desc: 'Samoussas croustillants',
-        image: 'https://example.com/samoussas.jpg',
+        image:
+          'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fsamoussas.jpg?alt=media&token=0314e3c8-e3b7-4fea-b5e0-7859d0322f83',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[0].category_id
-          }
+          connect: { category_id: dragonCategories[0].category_id }
         },
         options: {
           create: [
@@ -4425,20 +4139,19 @@ async function main() {
         }
       }
     }),
-
-    // Catégorie Plats Principaux
+  
+    // Catégorie Plats Principaux supplémentaires
     prisma.article.create({
       data: {
         name: 'Poulet aux Noix de Cajou',
         price: 15.99,
         desc: 'Poulet sauté aux noix de cajou et légumes',
-        image: 'https://example.com/pouletcajou.jpg',
+        image:
+          'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fpoulet-aux-noix-de-cajou.jpg?alt=media&token=455eb533-51cb-4917-af39-a21714c855d8',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[1].category_id
-          }
+          connect: { category_id: dragonCategories[1].category_id }
         },
         options: {
           create: [
@@ -4451,33 +4164,31 @@ async function main() {
     }),
     prisma.article.create({
       data: {
-        name: 'Crevettes à l\'Ail',
+        name: "Crevettes à l'Ail",
         price: 16.99,
-        desc: 'Crevettes sautées à l\'ail et au gingembre',
-        image: 'https://example.com/crevettesail.jpg',
+        desc: "Crevettes sautées à l'ail et au gingembre",
+        image:
+          'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fcrevettes-ail.webp?alt=media&token=2e119602-7179-4e8e-807e-510dc0757ed6',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[1].category_id
-          }
+          connect: { category_id: dragonCategories[1].category_id }
         }
       }
     }),
-
-    // Catégorie Desserts
+  
+    // Catégorie Desserts supplémentaires
     prisma.article.create({
       data: {
         name: 'Glace au Thé Vert',
         price: 5.99,
         desc: 'Glace au thé vert matcha',
-        image: 'https://example.com/glacethevert.jpg',
+        image:
+          'https://firebasestorage.googleapis.com/v0/b/ceseats-907f1.firebasestorage.app/o/articles%2Fglace-matcha.webp?alt=media&token=efaa776a-c44e-44c1-8f05-cd57dcb70fcc',
         available: true,
         restaurant_id: additionalRestaurants[1].restaurant_id,
         categories: {
-          connect: {
-            category_id: dragonCategories[3].category_id
-          }
+          connect: { category_id: dragonCategories[3].category_id }
         },
         options: {
           create: [
@@ -4491,16 +4202,16 @@ async function main() {
 
   // Mise à jour des notes et du nombre d'avis pour chaque restaurant
   console.log('📊 Mise à jour des notes des restaurants...');
-  
+
   // Fonction pour calculer la moyenne des notes
   const updateRestaurantRatings = async (restaurantId) => {
     const reviews = await prisma.review.findMany({
       where: { restaurant_id: restaurantId }
     });
-    
+
     const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
     const averageRating = reviews.length > 0 ? totalRating / reviews.length : 0;
-    
+
     await prisma.restaurant.update({
       where: { restaurant_id: restaurantId },
       data: {
@@ -4518,7 +4229,7 @@ async function main() {
     updateRestaurantRatings(restaurants[2].restaurant_id), // Sushi World
     updateRestaurantRatings(restaurants[3].restaurant_id), // The Breakfast Club
     updateRestaurantRatings(restaurants[4].restaurant_id), // Spicy Chicken Express
-    
+
     // Restaurants supplémentaires
     updateRestaurantRatings(additionalRestaurants[0].restaurant_id), // Taj Mahal
     updateRestaurantRatings(additionalRestaurants[1].restaurant_id), // Dragon d'Or

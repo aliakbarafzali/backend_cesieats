@@ -15,33 +15,23 @@ router.post('/register', async (req, res) => {
 
     const existingUser = await prisma.users.findUnique({ where: { user_email: email } });
     if (existingUser)
-      return res.status(400).json({ error: 'Cet email est déjà utilisé.', code: EMAIL_ALREADY_EXISTS_CODE });
+      return res.status(400).json({ error: 'Cet email est déjà utilisé.' });
 
     let newAddress = null;
     if (address) {
-      // Utilise l'identifiant Mapbox (mapbox_id) pour vérifier l'existence de l'adresse.
-      let existingAddress = null;
-      if (address.place_id) {
-        existingAddress = await prisma.address.findUnique({
-          where: { place_id: address.place_id }
-        });
-      }
+      let existingAddress = await prisma.address.findUnique({
+        where: { place_id: address.place_id }
+      });
       if (existingAddress) {
         newAddress = existingAddress;
       } else {
         newAddress = await prisma.address.create({
           data: {
-            // On suppose que le champ place_id dans le modèle est désormais de type String
             place_id: address.place_id,
-            // On extrait le nom de la rue depuis context.address.street_name
             street: address.street || "",
-            // La ville est récupérée depuis context.place.name
             city: address.city || "",
-            // Le code postal depuis context.postcode.name
             postcode: address.postcode || "",
-            // Le pays depuis context.country.name
             country: address.country || "",
-            // Les coordonnées sont extraites depuis l'objet coordinates
             lat: address.lat.toString() || "",
             lon: address.lon.toString() || ""
           }
@@ -50,6 +40,8 @@ router.post('/register', async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Créer le nouvel utilisateur
     const newUser = await prisma.users.create({
       data: {
         user_name: name,
@@ -62,22 +54,34 @@ router.post('/register', async (req, res) => {
       include: { address: true }
     });
 
+    // Vérifier si une demande de parrainage existe pour cet email
+    const referral = await prisma.referral.findFirst({
+      where: { refereeEmail: email, refereeId: null }
+    });
+    if (referral) {
+      // Mettre à jour l'enregistrement de parrainage pour lier l'utilisateur inscrit
+      await prisma.referral.update({
+        where: { id: referral.id },
+        data: { refereeId: newUser.user_id }
+      });
+    }
+
     const tokens = jwtTokens(newUser);
-    const cookieOptions = {
+    // Configuration du cookie, etc.
+    res.cookie('refresh_token', tokens.refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
-      maxAge: 2 * 24 * 60 * 60 * 1000 // 2 jours
-    };
-
-    res.cookie('refresh_token', tokens.refreshToken, cookieOptions);
+      maxAge: 2 * 24 * 60 * 60 * 1000
+    });
 
     return res.status(200).json({ accessToken: tokens.accessToken, user: newUser });
   } catch (error) {
-    console.error(error.message);
-    return res.status(500).json({ error: error.message, code: TECHNICAL_ERROR_CODE });
+    console.error("Erreur lors de l'inscription :", error.message);
+    return res.status(500).json({ error: error.message });
   }
 });
+
 
 
 router.post('/login', async (req, res) => {
