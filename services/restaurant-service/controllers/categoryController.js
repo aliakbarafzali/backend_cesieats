@@ -2,27 +2,27 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 const getAllCategories = async (req, res) => {
-    try {
-      const { restaurant_id } = req.query;
-  
-      const categories = await prisma.category.findMany({
-        where: restaurant_id ? { restaurant_id } : {},
-        orderBy: { name: 'asc' }
-      });
-  
-      res.status(200).json(categories);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Erreur lors de la récupération des catégories' });
-    }
-  };
-  
+  try {
+    const { restaurant_id } = req.query;
+
+    const categories = await prisma.category.findMany({
+      where: restaurant_id ? { restaurant_id } : {},
+      orderBy: { name: 'asc' }
+    });
+
+    res.status(200).json(categories);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erreur lors de la récupération des catégories' });
+  }
+};
+
 const getCategoryById = async (req, res) => {
   try {
     const { id } = req.params;
     const category = await prisma.category.findUnique({
       where: { category_id: id },
-      include: { articles: true } // Inclut les articles associés à la catégorie
+      include: { articles: { select: { article_id: true } } }
     });
     if (!category) return res.status(404).json({ error: 'Catégorie non trouvée' });
     res.status(200).json(category);
@@ -62,7 +62,7 @@ const createCategory = async (req, res) => {
 
   } catch (error) {
     console.error('Erreur dans createCategory:', error);
-    
+
     // Gestion spécifique des erreurs Prisma
     if (error.code === 'P2003') {
       return res.status(400).json({ error: "La clé étrangère 'restaurant_id' n'est pas valide." });

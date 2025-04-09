@@ -96,7 +96,9 @@ export const getAllArticles = async (req, res, next) => {
       where,
       include: {
         categories: true,
-        ingredients: true
+        ingredients: true,
+        supplements: true,
+        options: true
       }
     });
 
@@ -110,15 +112,20 @@ export const getAllArticles = async (req, res, next) => {
 export const getArticleById = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const article = await prisma.article.findUnique({
+    const articleFromDB = await prisma.article.findUnique({
       where: { article_id: id },
       include: {
         categories: true,
-        ingredients: true
+        ingredients: true,
+        supplements: true,
+        options: true,
+        restaurant: {
+          select: { restaurant_name: true }
+        }
       }
     });
 
-    if (!article) {
+    if (!articleFromDB) {
       return res.status(404).json({
         error: {
           code: ERROR_CODES.ARTICLE_NOT_FOUND.code,
@@ -128,11 +135,36 @@ export const getArticleById = async (req, res, next) => {
       });
     }
 
-    res.json(article);
+    // Transformation : aplatir la propriété restaurant
+    const articleResponse = {
+      article_id: articleFromDB.article_id,
+      name: articleFromDB.name,
+      desc: articleFromDB.desc,
+      price: articleFromDB.price,
+      image: articleFromDB.image,
+      available: articleFromDB.available,
+      has_offer: articleFromDB.has_offer,
+      offer_type: articleFromDB.offer_type,
+      discount_percent: articleFromDB.discount_percent !== null
+        ? articleFromDB.discount_percent.toString()
+        : null,
+      free_product_id: articleFromDB.free_product_id,
+      restaurant_id: articleFromDB.restaurant_id,
+      restaurant_name: articleFromDB.restaurant.restaurant_name,
+      created_at: articleFromDB.created_at.toISOString(),
+      updated_at: articleFromDB.updated_at.toISOString(),
+      categories: articleFromDB.categories,
+      ingredients: articleFromDB.ingredients,
+      supplements: articleFromDB.supplements,
+      options: articleFromDB.options
+    };
+
+    res.json(articleResponse);
   } catch (error) {
     next(error);
   }
 };
+
 
 // ✏️ Mettre à jour un article avec catégories et ingrédients
 export const updateArticle = async (req, res, next) => {
@@ -190,9 +222,9 @@ export const updateArticle = async (req, res, next) => {
         free_product_id,
         categories: categories
           ? {
-              set: [],
-              connect: categories.map(id => ({ category_id: id })),
-            }
+            set: [],
+            connect: categories.map(id => ({ category_id: id })),
+          }
           : undefined,
         ingredients: {
           create: ingredients?.map(i => ({
