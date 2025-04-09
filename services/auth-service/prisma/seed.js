@@ -60,7 +60,7 @@ async function main() {
       // Connecte la relation avec user_types en utilisant le champ relationnel
       user_types: { connect: { type_id: 3 } },
       // Connecte la relation avec Address via le champ relationnel "address"
-      address: { connect: { id: address1.id } }
+      address: { connect: { id: addresses[0].id } }
     }
   });
 
@@ -74,7 +74,7 @@ async function main() {
       user_phone: '0611111111',
       user_password: hashed,
       user_types: { connect: { type_id: 1 } },
-      address: { connect: { id: address2.id } }
+      address: { connect: { id: addresses[1].id } }
     }
   });
 
