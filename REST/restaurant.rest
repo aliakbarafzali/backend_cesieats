@@ -4,12 +4,12 @@ POST http://localhost:5001/api/restaurants
 Content-Type: application/json
 
 {
-  "restaurant_name": "Chez Mario",
+  "restaurant_name": "Chdsqdez Mario",
   "restaurant_address": "6 avenue général Leclerc, 69140 Rillieux-la-pape, France",
   "restaurant_phone": "0781655198",
   "restaurant_email": "maric@dksqdsq.fr",
   "opening_hours": "Lundi - Samedi : 12h - 14h, 19h - 23h",
-  "restaurant_type": "Italien, Kebab",
+  "restaurant_type": "Itsssalien, Kebab",
   "average_rating": 4.7,
   "owner_id": "10644621-a798-4054-b2c0-4203e9eecd17"
 }
@@ -96,8 +96,6 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:5001/api/ingredients
-
 ###
 GET http://localhost:5001/api/articles
 ###
@@ -106,15 +104,29 @@ POST http://localhost:5001/api/articles
 Content-Type: application/json
 
 {
-  "name": "Pizza 4 Pepperoni",
-  "desc": "avec supplément gorgonzola",
-  "price": 13.49,
-  "categoryIds": ["90e99467-c55f-4871-9492-7d059f867df7"],
+  "name": "Burger Double",
+  "price": 10.99,
+  "desc": "Un burger double steak haché",
+  "restaurant_id": "4821fc5e-a17d-4672-9a63-1053d29a82f4",
+  "categories": ["3cc6a62d-b6d1-4d9d-ae4d-46590bed7029"],
   "ingredients": [
-    {
-      "ingredient_id": "ffd269fb-68c2-475e-a39e-e9eb27b16eaa",
-      "is_optional": false,
-      "extra_price": 0.50
-    }
-  ]
+    { "name": "Steak", "removable": false },
+    { "name": "Salade" }
+  ],
+  "supplements": [
+    { "name": "Fromage", "extra_price": 1.5 },
+    { "name": "Bacon", "is_optional": true, "extra_price": 2.0 }
+  ],
+  "options": [
+    { "name": "Taille", "value": "XL", "extra_price": 1.0 },
+    { "name": "Taille", "value": "M", "is_default": true }
+  ],
+  "has_offer": true,
+  "offer_type": "DISCOUNT",
+  "discount_percent": 20
 }
+
+
+### Get All Reviews
+GET http://localhost:5001/api/reviews/c1344354-5a3e-4b3c-a553-5c1b27f9cb1c
+Content-Type: application/json

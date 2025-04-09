@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Order {
+  id         String          @id @default(uuid())
+  user_id    String
+  created_at DateTime        @default(now())
+  total      Decimal         @db.Decimal(8, 2)
+  status     String          @default("Préparation")
+  rating     Int?            // ⭐️ Ajout du rating
+
+  promoCodeId String?
+  promoCode   PromoCode?     @relation(fields: [promoCodeId], references: [id])
+
+  articles   OrderArticle[]
+}
+
+model OrderArticle {
+  id        String              @id @default(uuid())
+  orderId   String
+  articleId String
+  name      String              // Pour garder le nom même si supprimé côté restau
+  price     Float
+  quantity  Int
+  image     String?
+
+  restaurant_id   String
+  restaurant_name String
+
+  order     Order               @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  supplements        OrderSupplement[]
+  removed_ingredients OrderRemovedIngredient[]
+  selected_options    OrderOption[]
+}
+
+model OrderSupplement {
+  id            String @id @default(uuid())
+  orderArticleId String
+  name          String
+  extra_price   Float
+
+  orderArticle OrderArticle @relation(fields: [orderArticleId], references: [id], onDelete: Cascade)
+}
+
+model OrderRemovedIngredient {
+  id            String @id @default(uuid())
+  orderArticleId String
+  name          String
+
+  orderArticle OrderArticle @relation(fields: [orderArticleId], references: [id], onDelete: Cascade)
+}
+
+model OrderOption {
+  id            String @id @default(uuid())
+  orderArticleId String
+  name          String
+  value         String
+  extra_price   Float?
+
+  orderArticle OrderArticle @relation(fields: [orderArticleId], references: [id], onDelete: Cascade)
+}
+
+model PromoCode {
+  id         String   @id @default(uuid())
+  code       String   @unique
+  discount   Float
+  validUntil DateTime
+
+  orders Order[] 
+}

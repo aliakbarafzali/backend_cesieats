@@ -18,7 +18,9 @@ export const createArticle = async (req, res, next) => {
       has_offer,
       offer_type,
       discount_percent,
-      free_product_id
+      free_product_id,
+      options,
+      supplements
     } = req.body;
 
     if (!name || !price || !restaurant_id) {
@@ -49,19 +51,40 @@ export const createArticle = async (req, res, next) => {
         offer_type,
         discount_percent: discount_percent ? parseFloat(discount_percent) : null,
         free_product_id,
+
         categories: {
           connect: categories?.map(id => ({ category_id: id })) || [],
         },
+
         ingredients: {
           create: ingredients?.map(i => ({
             name: i.name,
             removable: i.removable ?? true
           })) || [],
         },
+
+        options: {
+          create: options?.map(o => ({
+            name: o.name,
+            value: o.value,
+            extra_price: o.extra_price ? parseFloat(o.extra_price) : 0,
+            is_default: o.is_default ?? false
+          })) || [],
+        },
+
+        supplements: {
+          create: supplements?.map(s => ({
+            name: s.name,
+            is_optional: s.is_optional ?? false,
+            extra_price: s.extra_price ? parseFloat(s.extra_price) : 0
+          })) || [],
+        },
       },
       include: {
         categories: true,
-        ingredients: true
+        ingredients: true,
+        options: true,
+        supplements: true
       },
     });
 
@@ -73,6 +96,7 @@ export const createArticle = async (req, res, next) => {
     next(error);
   }
 };
+
 
 // 📄 Obtenir tous les articles
 export const getAllArticles = async (req, res, next) => {
@@ -87,7 +111,7 @@ export const getAllArticles = async (req, res, next) => {
     if (category_id) {
       where.categories = {
         some: {
-          category_id: category_id
+          category_id
         }
       };
     }
@@ -96,7 +120,9 @@ export const getAllArticles = async (req, res, next) => {
       where,
       include: {
         categories: true,
-        ingredients: true
+        ingredients: true,
+        supplements: true,
+        options: true
       }
     });
 
@@ -105,6 +131,7 @@ export const getAllArticles = async (req, res, next) => {
     next(error);
   }
 };
+
 
 // 🔍 Obtenir un article par ID
 export const getArticleById = async (req, res, next) => {

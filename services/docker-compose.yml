@@ -23,6 +23,17 @@ services:
     volumes:
       - restaurant_data:/var/lib/postgresql/data
 
+  postgres_order:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: order_service
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5436:5432"
+    volumes:
+      - order_data:/var/lib/postgresql/data
+
   auth-service:
     build:
       context: ./auth-service
@@ -43,6 +54,17 @@ services:
     depends_on:
       - postgres_restaurant
 
+  order-service:
+    build:
+      context: ./order-service
+    ports:
+      - "5002:5002"
+    env_file:
+      - ./order-service/.env
+    depends_on:
+      - postgres_order
+
 volumes:
   auth_data:
   restaurant_data:
+  order_data:
