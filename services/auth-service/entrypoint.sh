@@ -24,7 +24,7 @@ if [ -f "prisma/seed.js" ]; then
   node prisma/seed.js
 else
   echo "⚠️ Aucun script de seed trouvé, passage à l'étape suivante..."
-fi
+fi 
 
 echo "🚀 Lancement du serveur..."
 npm run dev
