@@ -6,7 +6,7 @@ import {dirname, join} from 'path';
 import { fileURLToPath } from 'url';
 import usersRouter from './routes/user-routes.js'
 import authRouter from './routes/auth-routes.js'
-import userRoutes from './routes/user-routes.js';
+import referralRouter from './routes/referral-routes.js'
 
 
 
@@ -25,6 +25,7 @@ app.use(cookieParser());
 app.use('/',express.static(join(__dirname, 'public')));
 app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/referral', referralRouter);
 
 app.listen(PORT, ()=>console.log(`✅ Auth is listening on ${PORT}`));
 

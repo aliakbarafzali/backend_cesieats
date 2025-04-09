@@ -37,3 +37,15 @@ model users {
   address       Address?   @relation(fields: [user_address], references: [id], onDelete: NoAction, onUpdate: NoAction)
   user_types    user_types? @relation(fields: [user_type], references: [type_id], onDelete: NoAction, onUpdate: NoAction)
 }
+
+model Referral {
+  id           Int      @id @default(autoincrement())
+  referrerId   String   @db.Uuid
+  refereeEmail String   @db.VarChar(100)
+  refereeId    String?  @db.Uuid
+  createdAt    DateTime @default(now())
+
+  // Vous pouvez ajouter des index pour améliorer la recherche
+  @@index([referrerId])
+  @@index([refereeEmail])
+}

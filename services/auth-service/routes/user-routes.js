@@ -48,4 +48,86 @@ router.get('/', async (req, res) => {
   }
 });
 
+/**
+ * Mise à jour du profil utilisateur
+ * Route : PUT /api/profile
+ * L'utilisateur à mettre à jour est déterminé via req.user.user_id (injecté par authentificateToken)
+ */
+router.put('/:id', authentificateToken, async (req, res) => {
+  try {
+    const { user_name, user_email, user_phone, user_password, address } = req.body;
+    const userId = req.user.user_id; // Assurez-vous que votre middleware place cette valeur dans req.user
+
+    // Construction de l'objet de données à mettre à jour
+    const updateData = {
+      user_name,
+      user_email,
+      user_phone,
+    };
+
+    // Si un mot de passe est fourni, on le met à jour
+    // Pensez à le hacher avant de le sauvegarder en production !
+    if (user_password && user_password.trim() !== '') {
+      updateData.user_password = user_password;
+    }
+
+    // Si une adresse est fournie, on effectue une opération upsert sur la relation
+    if (address) {
+      updateData.address = {
+        upsert: {
+          update: {
+            street: address.street,
+            city: address.city,
+            postcode: address.postcode,
+            country: address.country,
+            lat: address.lat,
+            lon: address.lon,
+          },
+          create: {
+            place_id: address.place_id,
+            street: address.street,
+            city: address.city,
+            postcode: address.postcode,
+            country: address.country,
+            lat: address.lat,
+            lon: address.lon,
+          }
+        }
+      };
+    }
+
+    const updatedUser = await prisma.users.update({
+      where: { user_id: userId },
+      data: updateData,
+      include: {
+        address: true, // Inclut l'adresse mise à jour
+        user_types: true,
+      },
+    });
+
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour du profil :", error);
+    res.status(500).json({ error: "Erreur lors de la mise à jour du profil" });
+  }
+});
+
+/**
+ * Suppression du compte utilisateur
+ * Route : DELETE /api/profile
+ * L'utilisateur à supprimer est déterminé via req.user.user_id
+ */
+router.delete('/:id', authentificateToken, async (req, res) => {
+  try {
+    const userId = req.user.user_id;
+    await prisma.users.delete({
+      where: { user_id: userId },
+    });
+    res.status(200).json({ message: "Compte supprimé avec succès." });
+  } catch (error) {
+    console.error("Erreur lors de la suppression du compte :", error);
+    res.status(500).json({ error: "Erreur lors de la suppression du compte" });
+  }
+});
+
 export default router;

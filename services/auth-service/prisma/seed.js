@@ -17,33 +17,36 @@ async function main() {
   const hashed = await bcrypt.hash('password123', 10);
 
   // Création de 2 adresses via upsert pour éviter les duplications
-  const address1 = await prisma.address.upsert({
-    where: { place_id: "1001" }, // Utilisez un identifiant fictif pour le seeding
-    update: {},
-    create: {
-      place_id: "1001",
-      street: 'Rue de Paris',
-      city: 'Paris',
-      postcode: '75000',
-      country: 'France',
-      lat: '48.8566',
-      lon: '2.3522'
-    }
-  });
+  console.log('📍 Création des adresses...');
+  const addresses = await Promise.all([
+    prisma.address.upsert({
+      where: { place_id: "1001" },
+      update: {},
+      create: {
+        place_id: "1001",
+        street: '15 Rue de la République',
+        city: 'Lyon',
+        postcode: '69001',
+        country: 'France',
+        lat: '45.7671',
+        lon: '4.8345'
+      }
+    }),
+    prisma.address.upsert({
+      where: { place_id: "1002" },
+      update: {},
+      create: {
+        place_id: "1002",
+        street: '27 Rue Gabriel Péri',
+        city: 'Villeurbanne',
+        postcode: '69100',
+        country: 'France',
+        lat: '45.7615',
+        lon: '4.8780'
+      }
+    })
+  ]);
 
-  const address2 = await prisma.address.upsert({
-    where: { place_id: "1002" },
-    update: {},
-    create: {
-      place_id: "1002",
-      street: 'Avenue de Lyon',
-      city: 'Lyon',
-      postcode: '69000',
-      country: 'France',
-      lat: '45.7640',
-      lon: '4.8357'
-    }
-  });
 
   // Création des utilisateurs (sans duplication)
   await prisma.users.upsert({
@@ -57,7 +60,7 @@ async function main() {
       // Connecte la relation avec user_types en utilisant le champ relationnel
       user_types: { connect: { type_id: 3 } },
       // Connecte la relation avec Address via le champ relationnel "address"
-      address: { connect: { id: address1.id } }
+      address: { connect: { id: addresses[0].id } }
     }
   });
 
@@ -71,7 +74,7 @@ async function main() {
       user_phone: '0611111111',
       user_password: hashed,
       user_types: { connect: { type_id: 1 } },
-      address: { connect: { id: address2.id } }
+      address: { connect: { id: addresses[1].id } }
     }
   });
 
