@@ -45,56 +45,56 @@ async function main() {
     prisma.address.create({
       data: {
         place_id: 'place_1',
-        street: '23 Rue de la Paix',
-        city: 'Paris',
-        postcode: '75001',
+        street: '23 Rue de la République',
+        city: 'Lyon',
+        postcode: '69002',
         country: 'France',
-        lat: '48.8566',
-        lon: '2.3522'
+        lat: '45.7609',
+        lon: '4.8357'
       }
     }),
     prisma.address.create({
       data: {
         place_id: 'place_2',
-        street: '140 Avenue des Champs-Élysées',
-        city: 'Paris',
-        postcode: '75008',
+        street: '140 Cours Lafayette',
+        city: 'Lyon',
+        postcode: '69003',
         country: 'France',
-        lat: '48.8698',
-        lon: '2.3079'
+        lat: '45.7612',
+        lon: '4.8517'
       }
     }),
     prisma.address.create({
       data: {
         place_id: 'place_3',
-        street: '10 Rue de Rivoli',
-        city: 'Paris',
-        postcode: '75004',
+        street: '10 Avenue Jean Jaurès',
+        city: 'Lyon',
+        postcode: '69007',
         country: 'France',
-        lat: '48.8556',
-        lon: '2.3622'
+        lat: '45.7430',
+        lon: '4.8410'
       }
     }),
     prisma.address.create({
       data: {
         place_id: 'place_4',
-        street: '5 Boulevard Haussmann',
-        city: 'Paris',
-        postcode: '75009',
+        street: '5 Rue Garibaldi',
+        city: 'Lyon',
+        postcode: '69006',
         country: 'France',
-        lat: '48.8700',
-        lon: '2.3310'
+        lat: '45.7699',
+        lon: '4.8535'
       }
     }),
     prisma.address.create({
       data: {
         place_id: 'place_5',
-        street: '18 Rue de la République',
-        city: 'Paris',
-        postcode: '75011',
+        street: '18 Rue Paul Bert',
+        city: 'Lyon',
+        postcode: '69003',
         country: 'France',
-        lat: '48.8530',
-        lon: '2.3690'
+        lat: '45.7598',
+        lon: '4.8510'
       }
     })
   ]);
@@ -105,59 +105,60 @@ async function main() {
     prisma.address.create({
       data: {
         place_id: 'place_6',
-        street: '45 Rue de la Paix',
-        city: 'Paris',
-        postcode: '75002',
+        street: '45 Cours Tolstoï',
+        city: 'Villeurbanne',
+        postcode: '69100',
         country: 'France',
-        lat: '48.8666',
-        lon: '2.3322'
+        lat: '45.7678',
+        lon: '4.8803'
       }
     }),
     prisma.address.create({
       data: {
         place_id: 'place_7',
-        street: '78 Avenue des Champs-Élysées',
-        city: 'Paris',
-        postcode: '75008',
+        street: '78 Rue Francis de Pressensé',
+        city: 'Villeurbanne',
+        postcode: '69100',
         country: 'France',
-        lat: '48.8698',
-        lon: '2.3079'
+        lat: '45.7732',
+        lon: '4.8754'
       }
     }),
     prisma.address.create({
       data: {
         place_id: 'place_8',
-        street: '12 Rue de Rivoli',
-        city: 'Paris',
-        postcode: '75004',
+        street: '12 Avenue Henri Barbusse',
+        city: 'Villeurbanne',
+        postcode: '69100',
         country: 'France',
-        lat: '48.8556',
-        lon: '2.3622'
+        lat: '45.7703',
+        lon: '4.8806'
       }
     }),
     prisma.address.create({
       data: {
         place_id: 'place_9',
-        street: '32 Boulevard Haussmann',
-        city: 'Paris',
-        postcode: '75009',
+        street: '32 Rue Léon Blum',
+        city: 'Villeurbanne',
+        postcode: '69100',
         country: 'France',
-        lat: '48.8700',
-        lon: '2.3310'
+        lat: '45.7590',
+        lon: '4.8923'
       }
     }),
     prisma.address.create({
       data: {
         place_id: 'place_10',
-        street: '56 Rue de la République',
-        city: 'Paris',
-        postcode: '75011',
+        street: '56 Rue du 4 Août 1789',
+        city: 'Villeurbanne',
+        postcode: '69100',
         country: 'France',
-        lat: '48.8530',
-        lon: '2.3690'
+        lat: '45.7761',
+        lon: '4.8828'
       }
     })
   ]);
+
 
   // Création des restaurants
   console.log('🍽️ Création des restaurants...');
@@ -1388,11 +1389,11 @@ async function main() {
         categories: { connect: [{ category_id: phCategories[3].category_id }] }
       }
     })
-  ]);  
+  ]);
 
   // --- Sushi World
   console.log('🍣 Création des articles pour Sushi World...');
-  await Promise.all([ 
+  await Promise.all([
     // Catégorie Sushi
     prisma.article.create({
       data: {
@@ -1642,7 +1643,7 @@ async function main() {
         categories: { connect: [{ category_id: swCategories[0].category_id }] }
       }
     }),
-    
+
     // Catégorie Sushis complémentaires
     prisma.article.create({
       data: {
@@ -1666,7 +1667,7 @@ async function main() {
         categories: { connect: [{ category_id: swCategories[1].category_id }] }
       }
     }),
-    
+
     // Catégorie Desserts complémentaires
     prisma.article.create({
       data: {
@@ -1686,7 +1687,7 @@ async function main() {
         }
       }
     })
-  ]);  
+  ]);
 
   // --- The Breakfast Club
   console.log('🥞 Création des articles pour The Breakfast Club...');
@@ -2017,7 +2018,7 @@ async function main() {
         }
       }
     })
-  ]);  
+  ]);
 
   // --- Spicy Chicken Express
   console.log('🍗 Création des articles pour Spicy Chicken Express...');
@@ -2270,7 +2271,7 @@ async function main() {
         categories: { connect: [{ category_id: sceCategories[3].category_id }] }
       }
     })
-  ]);  
+  ]);
 
   // --- Taj Mahal
   console.log('🍛 Création des articles pour Taj Mahal...');
@@ -2444,7 +2445,7 @@ async function main() {
         }
       }
     }),
-  
+
     // Catégorie Plats Principaux
     prisma.article.create({
       data: {
@@ -2479,7 +2480,7 @@ async function main() {
         }
       }
     }),
-  
+
     // Catégorie Desserts
     prisma.article.create({
       data: {
@@ -2494,7 +2495,7 @@ async function main() {
         }
       }
     })
-  ]);  
+  ]);
 
   // --- Ouzo
   console.log('🍽️ Création des articles pour Ouzo...');
@@ -2552,7 +2553,7 @@ async function main() {
         }
       }
     }),
-  
+
     // Catégorie Entrées
     prisma.article.create({
       data: {
@@ -2593,7 +2594,7 @@ async function main() {
         }
       }
     }),
-  
+
     // Catégorie Plats Principaux
     prisma.article.create({
       data: {
@@ -2654,7 +2655,7 @@ async function main() {
         }
       }
     }),
-  
+
     // Catégorie Desserts
     prisma.article.create({
       data: {
@@ -2821,7 +2822,7 @@ async function main() {
         }
       }
     }),
-  
+
     // Catégorie Assiettes supplémentaires
     prisma.article.create({
       data: {
@@ -2851,7 +2852,7 @@ async function main() {
         }
       }
     }),
-  
+
     // Catégorie Boissons supplémentaires
     prisma.article.create({
       data: {
@@ -3059,7 +3060,7 @@ async function main() {
         }
       }
     }),
-  
+
     // Catégorie Plats Principaux supplémentaires
     prisma.article.create({
       data: {
@@ -3094,7 +3095,7 @@ async function main() {
         }
       }
     }),
-  
+
     // Catégorie Desserts supplémentaires
     prisma.article.create({
       data: {
@@ -3142,7 +3143,7 @@ async function main() {
         }
       }
     })
-  ]);  
+  ]);
 
   // --- Dragon d'Or
   console.log('🥢 Création des catégories pour Dragon d\'Or...');
@@ -3228,7 +3229,7 @@ async function main() {
         }
       }
     }),
-  
+
     // Catégorie Plats Principaux
     prisma.article.create({
       data: {
@@ -3302,7 +3303,7 @@ async function main() {
         }
       }
     }),
-  
+
     // Catégorie Soupes
     prisma.article.create({
       data: {
@@ -3337,7 +3338,7 @@ async function main() {
         }
       }
     }),
-  
+
     // Catégorie Desserts
     prisma.article.create({
       data: {
@@ -3399,7 +3400,7 @@ async function main() {
         }
       }
     }),
-  
+
     // Catégorie Plats Principaux supplémentaires
     prisma.article.create({
       data: {
@@ -3434,7 +3435,7 @@ async function main() {
         }
       }
     }),
-  
+
     // Catégorie Desserts supplémentaires
     prisma.article.create({
       data: {
@@ -3959,7 +3960,7 @@ async function main() {
         }
       }
     }),
-  
+
     // Catégorie Plats Principaux
     prisma.article.create({
       data: {
@@ -4037,7 +4038,7 @@ async function main() {
         }
       }
     }),
-  
+
     // Catégorie Soupes
     prisma.article.create({
       data: {
@@ -4074,7 +4075,7 @@ async function main() {
         }
       }
     }),
-  
+
     // Catégorie Desserts
     prisma.article.create({
       data: {
@@ -4139,7 +4140,7 @@ async function main() {
         }
       }
     }),
-  
+
     // Catégorie Plats Principaux supplémentaires
     prisma.article.create({
       data: {
@@ -4176,7 +4177,7 @@ async function main() {
         }
       }
     }),
-  
+
     // Catégorie Desserts supplémentaires
     prisma.article.create({
       data: {
