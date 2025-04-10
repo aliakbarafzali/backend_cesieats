@@ -5,12 +5,14 @@ import { jwtTokens } from '../utils/jwt-helpers.js';
 import { authentificateToken } from '../middleware/authorization.js';
 import { PrismaClient } from '@prisma/client';
 import { EMAIL_ALREADY_EXISTS_CODE, INCORRECT_EMAIL_CODE, INCORRECT_PASSWORD_CODE, TECHNICAL_ERROR_CODE } from '../utils/globals.js';
+import logger from '../utils/loggers.js';
 
 const prisma = new PrismaClient();
 const router = express.Router();
 
 router.post('/register', async (req, res) => {
   try {
+
     const { name, email, phone, password, type, address } = req.body;
 
     const existingUser = await prisma.users.findUnique({ where: { user_email: email } });
@@ -74,7 +76,7 @@ router.post('/register', async (req, res) => {
       sameSite: 'strict',
       maxAge: 2 * 24 * 60 * 60 * 1000
     });
-
+    logger.info(`Inscription pour l'utilisateur ${email}`);
     return res.status(200).json({ accessToken: tokens.accessToken, user: newUser });
   } catch (error) {
     console.error("Erreur lors de l'inscription :", error.message);
@@ -86,8 +88,9 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
+    
     const { email, password, rememberMe } = req.body;
-
+    logger.info(`Tentative de connexion pour l'utilisateur ${email}`);
     const user = await prisma.users.findUnique({ where: { user_email: email }, include: { address: true } });
     if (!user) return res.status(401).json({ error: "Email incorrect", code: INCORRECT_EMAIL_CODE });
 
@@ -108,7 +111,8 @@ router.post('/login', async (req, res) => {
     }
 
     res.cookie('refresh_token', tokens.refreshToken, cookieOptions);
-
+    
+    logger.info(`Connexion réussie pour l'utilisateur ${email}`);
     // On renvoie l'access token dans le body pour l'utiliser côté client (par exemple dans le header Authorization)
     return res.status(200).json({ accessToken: tokens.accessToken, user: user });
   } catch (error) {
@@ -139,6 +143,7 @@ router.get('/refresh_token', (req, res) => {
 
 router.post('/logout', (req, res) => {
   res.clearCookie('refresh_token');
+  logger.info(`Déconnexion pour l'utilisateur ${email}`);
   return res.status(200).json({ message: 'Déconnexion réussie' });
 });
 

@@ -187,3 +187,24 @@ export const deleteOrder = async (req, res) => {
   }
 };
 
+export const getOrdersByUserId = async (req, res) => {
+  const { user_id } = req.params;
+
+  try {
+    const orders = await prisma.order.findMany({
+      where: { user_id },
+      include: {
+        articles: true,
+        promoCode: true,
+      },
+      orderBy: {
+        created_at: 'desc',
+      },
+    });
+
+    res.status(200).json(orders);
+  } catch (error) {
+    console.error('Erreur lors de la récupération des commandes par user_id :', error);
+    res.status(500).json({ error: 'Erreur lors de la récupération des commandes utilisateur' });
+  }
+};
